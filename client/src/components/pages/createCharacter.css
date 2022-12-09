@@ -1,0 +1,19 @@
+input {
+  border-radius: 19px;
+  height: 40px;
+}
+
+textarea {
+  border-radius: 10px;
+}
+
+p { 
+  padding-top: 10px;
+  font-size: 22px;
+}
+
+.button {
+  border-radius: 16px;
+  font-size: 20px;
+  background-color: #ff79a4;
+}
