@@ -1,0 +1,15 @@
+.image {
+  width: 100px;
+}
+
+.text {
+  color: black;
+}
+
+.name {
+  top: 40%;
+}
+
+.repo {
+  top: 65%;
+}
