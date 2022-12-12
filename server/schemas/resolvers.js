@@ -16,7 +16,13 @@ const resolvers = {
     comment: async (parent, { _id }) => {
       const params = _id ? { _id } : {};
       return await Comment.find(params);
-    }
+    },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id });
+      }
+      // throw new AuthenticationError('You need to be logged in!');
+    },
   },
 
   Mutation: {
@@ -37,11 +43,30 @@ const resolvers = {
       return await Character.findOneAndUpdate()
     },
     // How to add the date? the name of the author?
-    createComment: async (parent, { id, commentBody }) => {
-      const comment = await Comment.create({ id, commentBody });
-      return comment;
+    createComment: async (parent, { commentBody }) => {
+      if (context.user) {
+        const comment = await Comment.create({
+          commentBody,
+          author: context.user.username,
+          character: context.character,
+        });
+
+        return comment;
+      }
     },
-    // deleteComment: 
+    deleteComment: async (parent, { characterId, commentId }, context) => {
+      if (context.character) {
+        const comment = await Comment.findOneAndDelete({
+          _id: commentId,
+          author: context.user.username,
+        });
+
+        await Character.findOneAndUpdate(
+          { _id: characterId },
+          { $pull: { comments: { _id: comment._id} } }
+        )
+      }
+    }
 
     //login? from MERN/25-Resolver-Content/resolvers.js  Need to add utils
     // login: async (parent, { username, password }) => {
