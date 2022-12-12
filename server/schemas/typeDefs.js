@@ -49,7 +49,6 @@ const typeDefs = gql`
     deleteCharacter: Character
     createComment(id: ID!, commentBody: String!): Comment
     deleteComment(id: ID!): Comment
-
   }
 `;
 
