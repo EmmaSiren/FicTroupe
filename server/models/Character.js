@@ -11,6 +11,9 @@ const characterSchema = new Schema(
       type: String,
       required: true,
     },
+    background: {
+      type: String,
+    },
     createdAt: {
       type: Date,
       default: Date.now,
