@@ -26,6 +26,7 @@ const resolvers = {
   },
 
   Mutation: {
+    // Manage user information
     createUser: async (parent, { username, email, password}) => {
       const user = await User.create({ username, email, password});
       return user;
@@ -33,39 +34,69 @@ const resolvers = {
     updateUser: async (parent, { id, password}) => {
       return await User.findOneAndUpdate({ _id: id}, { password }, { new: true});
     },
+
+    // Manage Character information
     // What if the author put some other info when creating a character?
-    createCharacter: async (parent, { name, universe}) => {
-      const character = await Character.create({ name, universe});
+    createCharacter: async (parent, { name, universe }, context) => {
+      const character = await Character.create({ name, universe });
+      await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { characters: character._id} }
+      )
       return character;
     },
     // Update some parameters for a character? Not all?
-    updateCharacter: async( parent, args) => {
-      return await Character.findOneAndUpdate()
+    updateCharacter: async( parent, { id, background }) => {
+      return await Character.findOneAndUpdate( 
+        { _id: id },
+        { background },
+        { new: true }
+      )
     },
-    // How to add the date? the name of the author?
-    createComment: async (parent, { commentBody }) => {
+    // Delete an original character
+    deleteCharacter: async (parent, { characterId }, context) => {
       if (context.user) {
-        const comment = await Comment.create({
-          commentBody,
+        const character = await Character.findOneAndDelete({
+          _id:characterId,
           author: context.user.username,
-          character: context.character,
         });
 
-        return comment;
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { thoughts: thought._id } }
+        );
+
+        return character;
       }
+    },
+
+    // Manage comment information
+    // Add a new comment to a character
+    createComment: async (parent, { characterId, commentBody }, context) => {
+      return Character.findOneAndUpdate(
+        { _id: characterId },
+        {
+          $addToSet: {
+            comments: { commentBody, author: context.user.username },
+          },
+        },
+        { new: true }
+      );
     },
     deleteComment: async (parent, { characterId, commentId }, context) => {
-      if (context.character) {
-        const comment = await Comment.findOneAndDelete({
-          _id: commentId,
-          author: context.user.username,
-        });
-
-        await Character.findOneAndUpdate(
+      if (context.user) {
+        return Character.findOneAndUpdate(
           { _id: characterId },
-          { $pull: { comments: { _id: comment._id} } }
-        )
-      }
+          {
+            $pull: {
+              comments: {
+                _id: commentId,
+                author: context.user.username,
+              },
+            },
+          },
+          { new: true }
+        );
     }
 
     //login? from MERN/25-Resolver-Content/resolvers.js  Need to add utils

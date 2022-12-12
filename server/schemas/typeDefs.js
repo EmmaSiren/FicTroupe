@@ -47,7 +47,7 @@ const typeDefs = gql`
     createCharacter(name: String!, universe: String): Character
     updateCharacter(id: ID!): Character
     deleteCharacter(id: ID!): Character
-    createComment(id: ID!, commentBody: String!): Comment
+    createComment(commentBody: String!): Comment
     deleteComment(id: ID!): Comment
   }
 `;
