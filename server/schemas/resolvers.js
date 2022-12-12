@@ -1,16 +1,26 @@
-const { Tech, Matchup } = require('../models');
+const { User, Comment, Character } = require('../models');
 
 const resolvers = {
   Query: {
-    tech: async () => {
-      return Tech.find({});
-    },
-    matchups: async (parent, { _id }) => {
+    user: async (parent, {_id}) => {
       const params = _id ? { _id } : {};
-      return Matchup.find(params);
+      return await User.find(params);
+    },
+    characters: async () => {
+      return await Character.find({});
+    },
+    characters: async (parent, { _id }) => {
+      const params = _id ? { _id } : {};
+      return await Character.find(params);
     },
   },
+
   Mutation: {
+    createUser: async (parent, args) => {
+      const user = await User.create(args);
+      return user;
+    },
+
     createMatchup: async (parent, args) => {
       const matchup = await Matchup.create(args);
       return matchup;
