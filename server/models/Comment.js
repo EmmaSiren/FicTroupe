@@ -15,6 +15,10 @@ const commentSchema = new Schema(
             type: String,
             required: true,
         },
+        character: {
+            type: Schema.Types.ObjectId,
+            ref: 'Character'
+        },
         createdAt: {
             type: Date,
             default: Date.now,
