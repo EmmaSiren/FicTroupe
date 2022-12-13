@@ -5,6 +5,7 @@ import CreateCharacter from './pages/CreateCharacter';
 import Profile from './pages/Profile';
 import characters from './pages/CharacterList';
 import Adopt from './pages/Adopt';
+import Login from './pages/Login';
 import './portfolioContainer.css'
 
 
@@ -20,6 +21,9 @@ export default function PortfolioContainer() {
     }
     if(currentPage === 'CreateCharacter') {
       return <CreateCharacter />;
+    }
+    if(currentPage === 'Login') {
+      return <Login />;
     }
     return <Adopt />;
   };
