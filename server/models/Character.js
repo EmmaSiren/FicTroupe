@@ -14,11 +14,11 @@ const characterSchema = new Schema(
     background: {
       type: String,
     },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-      get: (timestamp) => dateFormat(timestamp),
-    },
+    // createdAt: {
+    //   type: Date,
+    //   default: Date.now,
+    //   // get: (timestamp) => dateFormat(timestamp),
+    // },
     universe: {
       type: String,
     },

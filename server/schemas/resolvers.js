@@ -2,27 +2,28 @@ const { User, Comment, Character } = require('../models');
 
 const resolvers = {
   Query: {
-    user: async (parent, { _id }) => {
-      const params = _id ? { _id } : {};
-      return await User.find(params);
+    user: async (parent, { username }) => {
+      return await User.findOne({ username });
+    },
+    users: async () => {
+      return await User.find({});
     },
     characters: async () => {
       return await Character.find({});
     },
-    character: async (parent, { _id }) => {
-      const params = _id ? { _id } : {};
-      return await Character.find(params).populate('comments').populate({ path: 'comments', populate:'commentBody'});
+    character: async (parent, { characterId }) => {
+      return await Character.find({ _id: characterId});
     },
     comment: async (parent, { _id }) => {
       const params = _id ? { _id } : {};
       return await Comment.find(params);
     },
-    me: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOne({ _id: context.user._id });
-      }
-      // throw new AuthenticationError('You need to be logged in!');
-    },
+    // me: async (parent, args, context) => {
+    //   if (context.user) {
+    //     return User.findOne({ _id: context.user._id });
+    //   }
+    //   // throw new AuthenticationError('You need to be logged in!');
+    // },
   },
 
   Mutation: {
