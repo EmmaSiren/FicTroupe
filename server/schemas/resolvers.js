@@ -96,7 +96,7 @@ const resolvers = {
             },
           },
           { new: true }
-        );
+        )};
     }
 
     //login? from MERN/25-Resolver-Content/resolvers.js  Need to add utils
@@ -115,7 +115,7 @@ const resolvers = {
     //   const token = signToken(user);
     //   return { token, user };
     // },
-  },
+  }
 };
 
 module.exports = resolvers;
