@@ -18,7 +18,6 @@ const typeDefs = gql`
     _id: ID!
     name: String!
     author: String!
-    createdAt: Date
     universe: String
     status: String!
     comments: [Comment]
@@ -29,7 +28,6 @@ const typeDefs = gql`
     commentBody: String!
     username: String!
     character: Character
-    createdAt: Date
   }
 
   type Query {

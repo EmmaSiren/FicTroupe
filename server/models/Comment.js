@@ -19,10 +19,10 @@ const commentSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'Character'
         },
-        createdAt: {
-            type: Date,
-            default: Date.now,
-        }
+        // createdAt: {
+        //     // type: Date,
+        //     // default: Date.now,
+        // }
     }
 );
 
