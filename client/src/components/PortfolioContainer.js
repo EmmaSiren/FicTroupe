@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import NavTabs from './NavTabs';
 import Dashboard from './pages/Dashboard';
 import CreateCharacter from './pages/CreateCharacter';
 import Profile from './pages/Profile';
@@ -7,6 +6,9 @@ import characters from './pages/CharacterList';
 import Adopt from './pages/Adopt';
 import Login from './pages/Login';
 import './portfolioContainer.css'
+import { AppstoreOutlined } from '@ant-design/icons';
+import { Menu } from 'antd';
+
 
 
 export default function PortfolioContainer() {
@@ -28,16 +30,58 @@ export default function PortfolioContainer() {
     return <Adopt />;
   };
 
-  const handlePageChange = (page) => setCurrentPage(page);
+  const items = [
+    {
+      label: 'Menu',
+      key: 'Menu',
+      icon: <AppstoreOutlined />,
+      children: [
+        {
+          label: ( 
+            <a href="#dashboard" onClick={() => setCurrentPage('Dashboard')}>
+              Dashboard
+            </a>
+          ),
+        },
+        {
+          label: ( 
+            <a href="#profile" onClick={() => setCurrentPage('Profile')}>
+              Profile
+            </a>
+          ),
+        },
+        {
+          label: ( 
+            <a href="#createCharacter" onClick={() => setCurrentPage('CreateCharacter')}>
+              Create Character
+            </a>
+          ),
+        },
+        {
+          label: ( 
+            <a href="#adopt" onClick={() => setCurrentPage('Adopt')}>
+              Adopt
+            </a>
+          ),
+        },
+        {
+          label: ( 
+            <a href="#login" onClick={() => setCurrentPage('Login')}>
+              Login
+            </a>
+          ),
+        },
+      ],
+    },
+  ];
 
+    
   return (
     <div>
       <header>
         <h1 className="display-5 fw-bold">FicTroupe</h1>
-        <nav>
-          <NavTabs currentPage={currentPage} handlePageChange={handlePageChange} />
-        </nav>
       </header>
+      <Menu mode="horizontal" items={items} />
       <section className="container">
         {renderPage()}
       </section>
