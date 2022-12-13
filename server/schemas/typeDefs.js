@@ -1,27 +1,54 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type Tech {
+  type User {
     _id: ID!
-    name: String!
+    username: String!
+    email: String!
+    password: String!
+    followings: [User]
+    followers: [User]
+    draft_characters: [Character]
+    original_characters: [Character]
+    saved_characters: [Character]
+    purchased_characters: [Character]
   }
 
-  type Matchup {
+  type Character {
     _id: ID!
-    tech1: String!
-    tech2: String!
-    tech1_votes: Int
-    tech2_votes: Int
+    name: String!
+    author: String!
+    createdAt: Date
+    universe: String
+    status: String!
+    comments: [Comment]
+  }
+
+  type Comment {
+    _id: ID!
+    commentBody: String!
+    username: String!
+    character: Character
+    createdAt: Date
   }
 
   type Query {
-    tech: [Tech]
-    matchups(_id: String): [Matchup]
+    users: [User]
+    characters: [Character]
+    comments: [Comment]
+    user(id: ID!): User
+    character(id:ID!): Character
+    comment(id:ID!): Comment
   }
 
   type Mutation {
-    createMatchup(tech1: String!, tech2: String!): Matchup
-    createVote(_id: String!, techNum: Int!): Matchup
+    createUser(username: String!, email: String!, password: String!): User
+    updateUser(id: ID!, password: String!): User
+    createCharacter(name: String!, universe: String): Character
+    updateCharacter(id: ID!): Character
+    deleteCharacter(characterId: ID!): Character
+    createComment(characterId: ID! commentBody: String!): Comment
+    deleteComment(characterId: ID!, commentId: ID!): Comment
   }
 `;
 
