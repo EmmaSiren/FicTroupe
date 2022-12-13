@@ -8,8 +8,9 @@ const resolvers = {
     users: async () => {
       return await User.find({});
     },
-    characters: async () => {
-      return await Character.find({});
+    characters: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return await Character.find(params);
     },
     character: async (parent, { characterId }) => {
       return await Character.findOne({ _id: characterId});
