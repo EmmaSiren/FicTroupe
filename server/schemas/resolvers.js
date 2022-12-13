@@ -3,7 +3,7 @@ const { User, Comment, Character } = require('../models');
 const resolvers = {
   Query: {
     user: async (parent, { username }) => {
-      return await User.findOne({ username });
+      return await User.findOne({ username }).populate('myCharacters');
     },
     users: async () => {
       return await User.find({});
@@ -12,12 +12,12 @@ const resolvers = {
       return await Character.find({});
     },
     character: async (parent, { characterId }) => {
-      return await Character.find({ _id: characterId});
+      return await Character.findOne({ _id: characterId});
     },
-    comment: async (parent, { _id }) => {
-      const params = _id ? { _id } : {};
-      return await Comment.find(params);
-    },
+    // comment: async (parent, { _id }) => {
+    //   const params = _id ? { _id } : {};
+    //   return await Comment.find(params);
+    // },
     // me: async (parent, args, context) => {
     //   if (context.user) {
     //     return User.findOne({ _id: context.user._id });

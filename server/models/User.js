@@ -18,40 +18,10 @@ const userSchema = new Schema(
       required: true,
       minlength: 5,
     },
-    followings: [
+    myCharacters: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'User',
-      },
-    ],
-    followers: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-      },
-    ],
-    draft_characters: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Character',
-      }
-    ],
-    original_characters: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Character',
-      }
-    ],
-    saved_characters: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Character',
-      }
-    ],
-    purchased_characters:[
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Character',
+        ref: 'Character'
       }
     ]
   },
@@ -64,28 +34,8 @@ const userSchema = new Schema(
 );
 
 // Virtuals to get followerCount, followingCount, and individual characterCounts
-userSchema.virtual('followingCount').get(function () {
-  return this.followings.length;
-});
-
-userSchema.virtual('followerCount').get(function () {
-  return this.followers.length;
-});
-
-userSchema.virtual('draftCount').get(function () {
-  return this.draft_characters.length;
-});
-
-userSchema.virtual('originalCount').get(function () {
-  return this.original_characters.length;
-});
-
-userSchema.virtual('savedCount').get(function () {
-  return this.saved_characters.length;
-});
-
-userSchema.virtual('purchasedCount').get(function () {
-  return this.purchased_characters.length;
+userSchema.virtual('characterCount').get(function () {
+  return this.myCharacters.length;
 });
 
 // Check if the password is correct

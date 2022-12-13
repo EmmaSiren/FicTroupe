@@ -6,12 +6,7 @@ const typeDefs = gql`
     username: String!
     email: String!
     password: String!
-    followings: [User]
-    followers: [User]
-    draft_characters: [Character]
-    original_characters: [Character]
-    saved_characters: [Character]
-    purchased_characters: [Character]
+    myCharacters:[Character]
   }
 
   type Character {
@@ -32,11 +27,9 @@ const typeDefs = gql`
 
   type Query {
     users: [User]
-    characters: [Character]
-    comments: [Comment]
-    user(id: ID!): User
-    character(id:ID!): Character
-    comment(id:ID!): Comment
+    user(username: String!): User
+    characters(username: String): [Character]
+    character(characterId:ID!): Character
   }
 
   type Mutation {
