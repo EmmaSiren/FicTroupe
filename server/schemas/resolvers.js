@@ -11,10 +11,6 @@ const resolvers = {
     characters: async () => {
       return await Character.find({});
     },
-    // characters: async (parent, { username }) => {
-    //   const params = username ? { username } : {};
-    //   return await Character.find(params);
-    // },
     character: async (parent, { characterId }) => {
       return await Character.findOne({ _id: characterId});
     },
@@ -30,22 +26,25 @@ const resolvers = {
     // Manage user information
     createUser: async (parent, { username, email, password}) => {
       const user = await User.create({ username, email, password});
+      // assign token here?
       return user;
-    },
-    updateUser: async (parent, { id, password}) => {
-      return await User.findOneAndUpdate({ _id: id}, { password }, { new: true});
     },
 
     // Manage Character information
     // What if the author put some other info when creating a character?
-    createCharacter: async (parent, { name, universe }, context) => {
-      const character = await Character.create({ name, universe });
+    createCharacter: async (parent, { name }, context) => {
+      const character = await Character.create(
+        { 
+          name,
+          author: context.user.username,
+        });
       await User.findOneAndUpdate(
         { _id: context.user._id },
-        { $addToSet: { characters: character._id} }
+        { $addToSet: { myCharacters: character._id} }
       )
       return character;
     },
+
     // Update some parameters for a character? Not all?
     updateCharacter: async( parent, { id, background }) => {
       return await Character.findOneAndUpdate( 
@@ -64,7 +63,7 @@ const resolvers = {
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { thoughts: thought._id } }
+          { $pull: { myCharacters: character._id } }
         );
 
         return character;
