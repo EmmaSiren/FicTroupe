@@ -1,4 +1,4 @@
-const { User, Comment, Character } = require('../models');
+const { User, Character } = require('../models');
 
 const resolvers = {
   Query: {
@@ -8,17 +8,16 @@ const resolvers = {
     users: async () => {
       return await User.find({});
     },
-    characters: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return await Character.find(params);
+    characters: async () => {
+      return await Character.find({});
     },
+    // characters: async (parent, { username }) => {
+    //   const params = username ? { username } : {};
+    //   return await Character.find(params);
+    // },
     character: async (parent, { characterId }) => {
       return await Character.findOne({ _id: characterId});
     },
-    // comment: async (parent, { _id }) => {
-    //   const params = _id ? { _id } : {};
-    //   return await Comment.find(params);
-    // },
     // me: async (parent, args, context) => {
     //   if (context.user) {
     //     return User.findOne({ _id: context.user._id });
@@ -71,35 +70,6 @@ const resolvers = {
         return character;
       }
     },
-
-    // Manage comment information
-    // Add a new comment to a character
-    createComment: async (parent, { characterId, commentBody }, context) => {
-      return Character.findOneAndUpdate(
-        { _id: characterId },
-        {
-          $addToSet: {
-            comments: { commentBody, author: context.user.username },
-          },
-        },
-        { new: true }
-      );
-    },
-    deleteComment: async (parent, { characterId, commentId }, context) => {
-      if (context.user) {
-        return Character.findOneAndUpdate(
-          { _id: characterId },
-          {
-            $pull: {
-              comments: {
-                _id: commentId,
-                author: context.user.username,
-              },
-            },
-          },
-          { new: true }
-        )};
-    }
 
     //login? from MERN/25-Resolver-Content/resolvers.js  Need to add utils
     // login: async (parent, { username, password }) => {
