@@ -57,7 +57,7 @@ const resolvers = {
             background: Inputbackground,
             universe: Inputuniverse,
             status: Inputstatus,
-          });
+          },);
         await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { myCharacters: character._id} }
@@ -68,36 +68,35 @@ const resolvers = {
       }
     },
 
-    // Update some parameters for a character? Not all?
-    updateCharacter: async( parent, { id, background }) => {
-      if (context.user && user._id === id ) {
-        return await Character.findOneAndUpdate( 
-          { _id: id },
-          { background },
-          { new: true }
-        )
+    // 
+    updateCharacter: async( parent, { characterId, Inputbackground }, context) => {
+      if (context.user) {
+        const character = await Character.findById(characterId);
+        if (context.user.username == character.author) {
+          return await Character.findByIdAndUpdate(
+            { _id: characterId },
+            { $set: { background: Inputbackground } },
+            {new: true}
+          )
+        }
+      } else {
+        console.log("Log in to update your character!");
       }
     },
     
     // Delete an original character
     deleteCharacter: async (parent, { characterId }, context) => {
-      if (context.user) {
-        const character = await Character.findOneAndDelete({
-          _id:characterId,
-          author: context.user.username,
-        });
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { myCharacters: character._id } }
-        );
-
-        return character;
+      if(context.user) {
+        const character = await Character.findByIdAndDelete(characterId)};
+        if (context.user.username == character.author) {
+          return  await User.findByIdAndUpdate(
+              { username: context.user._id },
+              { $pull: { myCharacters: character._id } },
+              { new: true },
+          )
+        }
       }
-    },
-
-
-  }
-};
+  },
+}
 
 module.exports = resolvers;
