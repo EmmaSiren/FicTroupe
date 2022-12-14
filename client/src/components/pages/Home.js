@@ -1,7 +1,20 @@
 import React from 'react';
-import characters from '../../assets/testingdata.js/CharacterList.js';
+import {QUERY_CHARACTERS} from "../../utils/queries"
+// import characters from '../../assets/testingdata.js/CharacterList.js';
+import { useQuery } from '@apollo/client';
 
-export default function Home({character}) {
+export default function Home() {
+
+//  console.log(QUERY_CHARACTERS);
+
+
+
+ const {loading, data} = useQuery(QUERY_CHARACTERS)
+
+const characters = data?.characters || [];
+console.log(characters)
+
+
   return(
     <div className="container">
       <h1 className="title">Home</h1>
@@ -12,12 +25,6 @@ export default function Home({character}) {
             <img className="image" alt="" src={character.img} />
           </div>
         ))}
-      </div>
-      <div className="row hardCoded">
-          <div className="col">
-            <h3>HardCoded FirstName LastName</h3>
-            <p>HardCoded image</p>
-          </div>
       </div>
     </div>
   );

@@ -14,8 +14,8 @@ export default function HamburgerMenu() {
   const [currentPage, setCurrentPage] = useState('Home');
 
   const renderPage = () => {
-    if(currentPage === 'Home') {
-      return <Home />;
+    if(currentPage === 'Login') {
+      return <Login />;
     }
     if(currentPage === 'Dashboard') {
       return <Dashboard characters={characters}/>;
@@ -23,7 +23,7 @@ export default function HamburgerMenu() {
     if(currentPage === 'CreateCharacter') {
       return <CreateCharacter />;
     }
-    return <Login />;
+    // return <Home />;
   };
 
   const items = [
