@@ -3,9 +3,9 @@ import characters from '../../assets/testingdata.js/CharacterList.js';
 
 export default function Home({character}) {
   return(
-    <div className="container">
-      <h1 className="title">Home</h1>
-      <div className="row">
+    <div className="">
+      <h1 className="">Home</h1>
+      <div className="">
         {characters.map(character => (
           <div className="col" key={character.id}>
             <h3>{character.name}</h3>
@@ -13,8 +13,8 @@ export default function Home({character}) {
           </div>
         ))}
       </div>
-      <div className="row hardCoded">
-          <div className="col">
+      <div className=" hardCoded">
+          <div className="">
             <h3>HardCoded FirstName LastName</h3>
             <p>HardCoded image</p>
           </div>

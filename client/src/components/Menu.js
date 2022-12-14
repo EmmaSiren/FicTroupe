@@ -4,10 +4,10 @@ import Dashboard from './pages/Dashboard';
 import CreateCharacter from './pages/CreateCharacter';
 import characters from '../assets/testingdata.js/CharacterList';
 import Login from './pages/Login';
-import '../assets/css/menu.css'
 import { AppstoreOutlined } from '@ant-design/icons';
-import { Menu } from 'antd';
+import { Layout, Menu } from 'antd';
 
+const { Header, Content, Footer } = Layout;
 
 
 export default function HamburgerMenu() {
@@ -64,17 +64,29 @@ export default function HamburgerMenu() {
     },
   ];
 
-    
   return (
-    <div>
-      <header>
-        <h1 className="display-5 fw-bold">FicTroupe</h1>
-      </header>
-      <Menu mode="horizontal" items={items} />
-      <section className="container">
-        {renderPage()}
-      </section>
-      <footer className="text-center"></footer>
-    </div>
+    <Layout>
+      <Header style={{ background: '#1890ff' }}>
+        <h1 style={{float: 'right'}}>FicTroupe</h1>
+        <Menu style={{ background: 'transparent' }} mode="horizontal" items={items} />
+      </Header>
+      <Content style={{ padding: '30px' }}>
+        <div className="site-layout-content" style={{ background: 'grey', height: '75vh' }}>
+          {renderPage()}
+        </div>
+      </Content>
+      <Footer style={{ textAlign: 'center' }}>
+        FicTroupe 2022 Created by SAJE
+      </Footer>
+    </Layout>
+
+      // <header>
+      //   <h1 className="">FicTroupe</h1>
+      //   <h2 className="">{currentPage}</h2>
+      // </header>
+      // <Menu mode="horizontal" items={items} />
+      // <section className="">
+      //   {renderPage()}
+      // </section>
   );
 }
