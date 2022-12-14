@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Home from './Home';
-import Dashboard from './Dashboard';
-import CreateCharacter from './CreateCharacter';
-import characters from '../../assets/testingdata.js/CharacterList';
-import Login from './Login';
-import '../../assets/css/menu.css'
+import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
+import CreateCharacter from './pages/CreateCharacter';
+import characters from '../assets/testingdata.js/CharacterList';
+import Login from './pages/Login';
+import '../assets/css/menu.css'
 import { AppstoreOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 
