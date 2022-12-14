@@ -1,27 +1,36 @@
 const { gql } = require('apollo-server-express');
 
+ // Need to update createUser: User/Auth 
 const typeDefs = gql`
-  type Tech {
+  type User {
     _id: ID!
-    name: String!
+    username: String!
+    email: String!
+    password: String!
+    myCharacters:[Character]
   }
 
-  type Matchup {
+  type Character {
     _id: ID!
-    tech1: String!
-    tech2: String!
-    tech1_votes: Int
-    tech2_votes: Int
+    name: String!
+    author: String!
+    background: String
+    universe: String
+    status: String!
   }
 
   type Query {
-    tech: [Tech]
-    matchups(_id: String): [Matchup]
+    users: [User]
+    user(username: String!): User
+    characters: [Character]
+    character(characterId:ID!): Character
   }
 
   type Mutation {
-    createMatchup(tech1: String!, tech2: String!): Matchup
-    createVote(_id: String!, techNum: Int!): Matchup
+    createUser(username: String!, email: String!, password: String!): User
+    createCharacter(name: String!, background: String, universe: String, status: String): Character
+    updateCharacter(characterId: ID!, name: String!, background: String!): Character
+    deleteCharacter(characterId: ID!): Character
   }
 `;
 

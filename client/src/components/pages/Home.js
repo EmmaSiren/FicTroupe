@@ -1,11 +1,10 @@
 import React from 'react';
-import './profile.css';
-import characters from './CharacterList';
+import characters from '../../assets/testingdata.js/CharacterList.js';
 
-export default function Profile({character}) {
+export default function Home({character}) {
   return(
     <div className="container">
-      <h1 className="title">Your Characters</h1>
+      <h1 className="title">Home</h1>
       <div className="row">
         {characters.map(character => (
           <div className="col" key={character.id}>
@@ -13,6 +12,12 @@ export default function Profile({character}) {
             <img className="image" alt="" src={character.img} />
           </div>
         ))}
+      </div>
+      <div className="row hardCoded">
+          <div className="col">
+            <h3>HardCoded FirstName LastName</h3>
+            <p>HardCoded image</p>
+          </div>
       </div>
     </div>
   );

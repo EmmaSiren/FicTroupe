@@ -1,13 +1,27 @@
 const db = require('../config/connection');
-const { Tech } = require('../models');
-
-const techData = require('./techData.json');
+const { Character, User } = require('../models');
+const userData = require('./userData.json');
+const characterData = require('./characterData.json');
 
 db.once('open', async () => {
-  await Tech.deleteMany({});
+  await Character.deleteMany({});
+  await User.deleteMany({});
 
-  const technologies = await Tech.insertMany(techData);
+  await User.create(userData);
 
-  console.log('Technologies seeded!');
+  for (let i = 0; i < characterData.length; i++) {
+    const { _id, author, name, background, universe } = await Character.create(characterData[i]);
+    const user = await User.findOneAndUpdate(
+      { username: author },
+      {
+        $addToSet: {
+          myCharacters: _id,
+        },
+      }
+    );
+    console.log(user);
+  }; 
+
+  console.log('Characters and Users seeded!');
   process.exit(0);
 });

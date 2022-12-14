@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { UploadOutlined } from '@ant-design/icons';
 import { Form, Input, Button, Upload } from 'antd';
+
 
 export default function CreateCharacter() {
   <div>
