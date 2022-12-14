@@ -8,13 +8,7 @@ export default function CreateCharacter() {
   <div>
     <Form className="form">
       <p>Name:</p>
-      <Input
-        name="name"
-        background="background"
-        status="status"
-        type="text"
-      />
-
+      <Input name="name" background="background" status="status" type="text" />
       <Upload>
         <Button icon={<UploadOutlined />}>Click to Upload</Button>
       </Upload>

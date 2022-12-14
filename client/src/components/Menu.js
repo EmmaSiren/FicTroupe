@@ -2,13 +2,19 @@ import React, { useState } from 'react';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import CreateCharacter from './pages/CreateCharacter';
+import Quill from '../assets/images/quill.png';
 import characters from '../assets/testingdata.js/CharacterList';
 import Login from './pages/Login';
-import { AppstoreOutlined } from '@ant-design/icons';
-import { Layout, Menu } from 'antd';
+import { 
+  MenuOutlined, 
+  HomeOutlined, 
+  IdcardOutlined, 
+  UserAddOutlined, 
+  LoginOutlined 
+  } from '@ant-design/icons';
+import { Layout, Menu  } from 'antd';
 
 const { Header, Content, Footer } = Layout;
-
 
 export default function HamburgerMenu() {
   const [currentPage, setCurrentPage] = useState('Home');
@@ -30,33 +36,33 @@ export default function HamburgerMenu() {
     {
       label: 'Menu',
       key: 'Menu',
-      icon: <AppstoreOutlined />,
+      icon: <MenuOutlined />,
       children: [
         {
           label: ( 
             <a href="#home" onClick={() => setCurrentPage('Home')}>
-              Home
+              <HomeOutlined /> Home
             </a>
           ),
         },
         {
           label: ( 
             <a href="#dashboard" onClick={() => setCurrentPage('Dashboard')}>
-              Dashboard
+              <IdcardOutlined /> Dashboard
             </a>
           ),
         },
         {
           label: ( 
             <a href="#createCharacter" onClick={() => setCurrentPage('CreateCharacter')}>
-              Create Character
+              <UserAddOutlined /> Create Character
             </a>
           ),
         },
         {
           label: ( 
             <a href="#login" onClick={() => setCurrentPage('Login')}>
-              Login
+              <LoginOutlined /> Login
             </a>
           ),
         },
@@ -67,11 +73,15 @@ export default function HamburgerMenu() {
   return (
     <Layout>
       <Header style={{ background: '#1890ff' }}>
-        <h1 style={{float: 'right'}}>FicTroupe</h1>
-        <Menu style={{ background: 'transparent' }} mode="horizontal" items={items} />
+        <h1  className="ficTroupe" style={{float: 'right'}}> 
+          <img style={{width: '45px'}}src={Quill} alt=""></img>
+          FicTroupe
+        </h1>
+        <Menu className="menu" mode="horizontal" items={items} />
       </Header>
+      <h2 className="title">{currentPage}</h2>
       <Content style={{ padding: '30px' }}>
-        <div className="site-layout-content" style={{ background: 'grey', height: '75vh' }}>
+        <div className="site-layout-content" style={{ background: 'grey', height: '70vh' }}>
           {renderPage()}
         </div>
       </Content>

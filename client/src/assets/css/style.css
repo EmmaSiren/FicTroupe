@@ -1,0 +1,41 @@
+.ficTroupe {
+  font-family: 'La Belle Aurore', cursive;
+  font-size: 50px;
+  margin-top: 6px;
+}
+.menu {
+  background: transparent;
+  font-family: 'Corinthia', cursive;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.ant-menu-item {
+  font-family: 'Corinthia', cursive;
+  font-size: 30px;
+}
+
+.title {
+  font-family: 'Corinthia', cursive;
+  font-size: 60px;
+  margin: 0;
+  text-align: center;
+}
+
+h2 {
+  margin: 0;
+}
+
+.characterInformation {
+  font-family: 'Handlee', cursive;
+}
+
+#test2 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  margin: auto;
+}
