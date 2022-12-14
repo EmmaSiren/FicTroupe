@@ -6,13 +6,11 @@ import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink, } from '@a
 import { setContext } from '@apollo/client/link/context';
 
 // import SignUp from './components/signup';
-import Adopt from './components/pages/Adopt';
-import CharacterList from './components/pages/CharacterList';
+import CharacterList from './assets/testingdata.js/CharacterList.js';
 import CreateCharacter from './components/pages/CreateCharacter';
 import Dashboard from './components/pages/Dashboard';
 import Login from './components/pages/Login';
-import Profile from './components/pages/Profile';
-import Menu from './components/Menu';
+import Menu from './components/pages/Menu';
 
 const httpLink = createHttpLink({
     uri: '/graphql',

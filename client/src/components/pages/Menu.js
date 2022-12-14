@@ -1,33 +1,29 @@
 import React, { useState } from 'react';
-import Dashboard from './pages/Dashboard';
-import CreateCharacter from './pages/CreateCharacter';
-import Profile from './pages/Profile';
-import characters from './pages/CharacterList';
-import Adopt from './pages/Adopt';
-import Login from './pages/Login';
-import './portfolioContainer.css'
+import Home from './Home';
+import Dashboard from './Dashboard';
+import CreateCharacter from './CreateCharacter';
+import characters from '../../assets/testingdata.js/CharacterList';
+import Login from './Login';
+import '../../assets/css/menu.css'
 import { AppstoreOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 
 
 
-export default function hamburgerMenu() {
-  const [currentPage, setCurrentPage] = useState('Dashboard');
+export default function HamburgerMenu() {
+  const [currentPage, setCurrentPage] = useState('Home');
 
   const renderPage = () => {
-    if(currentPage === 'Dashboard') {
-      return <Dashboard />;
+    if(currentPage === 'Home') {
+      return <Home />;
     }
-    if(currentPage === 'Profile') {
-      return <Profile characters={characters}/>
+    if(currentPage === 'Dashboard') {
+      return <Dashboard characters={characters}/>;
     }
     if(currentPage === 'CreateCharacter') {
       return <CreateCharacter />;
     }
-    if(currentPage === 'Login') {
-      return <Login />;
-    }
-    return <Adopt />;
+    return <Login />;
   };
 
   const items = [
@@ -38,6 +34,13 @@ export default function hamburgerMenu() {
       children: [
         {
           label: ( 
+            <a href="#home" onClick={() => setCurrentPage('Home')}>
+              Home
+            </a>
+          ),
+        },
+        {
+          label: ( 
             <a href="#dashboard" onClick={() => setCurrentPage('Dashboard')}>
               Dashboard
             </a>
@@ -45,22 +48,8 @@ export default function hamburgerMenu() {
         },
         {
           label: ( 
-            <a href="#profile" onClick={() => setCurrentPage('Profile')}>
-              Profile
-            </a>
-          ),
-        },
-        {
-          label: ( 
             <a href="#createCharacter" onClick={() => setCurrentPage('CreateCharacter')}>
               Create Character
-            </a>
-          ),
-        },
-        {
-          label: ( 
-            <a href="#adopt" onClick={() => setCurrentPage('Adopt')}>
-              Adopt
             </a>
           ),
         },

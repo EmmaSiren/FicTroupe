@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './createCharacter.css';
+import React from 'react';
+import '../../assets/css/createCharacter.css';
 
 export default function CreateCharacter() {
   return (
