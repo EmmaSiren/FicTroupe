@@ -69,43 +69,33 @@ const resolvers = {
     },
 
     // 
-    updateCharacter: async( parent, { characterId, Inputbackground }) => {
-      /////////////////////Work here //////////////////
-      return await Character.findByIdAndUpdate(
-        { _id: characterId },
-        { $set: { background: Inputbackground } },
-        {new: true}
-      )
-      // if (context.user && user._id === id ) {
-      //   return await Character.findOneAndUpdate( 
-      //     { _id: id },
-      //     { background },
-      //     { new: true }
-      //   )
-      // }
+    updateCharacter: async( parent, { characterId, Inputbackground }, context) => {
+      if (context.user) {
+        const character = await Character.findById(characterId);
+        if (context.user.username == character.author) {
+          return await Character.findByIdAndUpdate(
+            { _id: characterId },
+            { $set: { background: Inputbackground } },
+            {new: true}
+          )
+        }
+      } else {
+        console.log("Log in to update your character!");
+      }
     },
     
     // Delete an original character
     deleteCharacter: async (parent, { characterId }, context) => {
       if(context.user) {
         const character = await Character.findByIdAndDelete(characterId)};
-
-        await User.findByIdAndUpdate(
-        )
+        if (context.user.username == character.author) {
+          return  await User.findByIdAndUpdate(
+              { username: context.user._id },
+              { $pull: { myCharacters: character._id } },
+              { new: true },
+          )
+        }
       }
-  //     if (context.user) {
-  //       const character = await Character.findOneAndDelete({characterId,
-  //       });
-
-  //       await User.findOneAndUpdate(
-  //         { _id: context.user._id },
-  //         { $pull: { myCharacters: character._id } }
-  //       );
-
-  //       return character;
-  //     }
-  //   },
-  // }
   },
 }
 
