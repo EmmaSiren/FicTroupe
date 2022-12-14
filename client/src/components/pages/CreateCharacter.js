@@ -8,6 +8,8 @@ export default function CreateCharacter() {
       <p>Name:</p>
       <Input
         name="name"
+        background="background"
+        status="status"
         type="text"
       />
 
