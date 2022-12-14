@@ -10,7 +10,7 @@ import CharacterList from './assets/testingdata.js/CharacterList.js';
 import CreateCharacter from './components/pages/CreateCharacter';
 import Dashboard from './components/pages/Dashboard';
 import Login from './components/pages/Login';
-import Menu from './components/pages/Menu';
+import Menu from './components/Menu';
 
 const httpLink = createHttpLink({
     uri: '/graphql',
