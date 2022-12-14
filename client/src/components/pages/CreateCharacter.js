@@ -1,18 +1,24 @@
 import React from 'react';
-import '../../assets/css/createCharacter.css';
+
+import { UploadOutlined } from '@ant-design/icons';
+import { Form, Input, Button, Upload } from 'antd';
+
 
 export default function CreateCharacter() {
-  return (
-    <div>
-      <h1 className="">Create Character</h1>
-        <form className="">
-          <p>Name:</p>
-          <input
-            name="name"
-            type="text"
-          />
-        </form>
-        <button className="" type="button">Submit</button>
-    </div>
-  );
+  <div>
+    <Form className="form">
+      <p>Name:</p>
+      <Input
+        name="name"
+        background="background"
+        status="status"
+        type="text"
+      />
+
+      <Upload>
+        <Button icon={<UploadOutlined />}>Click to Upload</Button>
+      </Upload>
+      <Button className="button" type="button">Submit</Button>
+    </Form>
+  </div>
 }
