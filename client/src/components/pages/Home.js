@@ -1,23 +1,18 @@
 import React from 'react';
 import characters from '../../assets/testingdata.js/CharacterList.js';
+import { TeamOutlined, UserOutlined } from '@ant-design/icons';
 
 export default function Home({character}) {
   return(
-    <div className="container">
-      <h1 className="title">Home</h1>
-      <div className="row">
+    <div>
+      <h2 style={{ textAlign: 'center' }}>New Characters <TeamOutlined /></h2>
+      <div style={{padding: '10px'}}>
         {characters.map(character => (
-          <div className="col" key={character.id}>
-            <h3>{character.name}</h3>
+          <div key={character.id}>
+            <h3><UserOutlined /> {character.name}</h3>
             <img className="image" alt="" src={character.img} />
           </div>
         ))}
-      </div>
-      <div className="row hardCoded">
-          <div className="col">
-            <h3>HardCoded FirstName LastName</h3>
-            <p>HardCoded image</p>
-          </div>
       </div>
     </div>
   );

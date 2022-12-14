@@ -1,32 +1,27 @@
 import React from 'react';
+import { Card, Button, Form, Input, Row } from 'antd';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
 export default function Login () {
   return (
-    <div>
-      <h2>Login</h2>
-      <form>
-        <div className="">
-          <label htmlFor="email">Email address:</label>
-          <input
-            placeholder="youremail@test.com"
-            name="email"
-            type="email"
-            id="email"
-          />
-        </div>
-        <div className="">
-          <label htmlFor="pwd">Password:</label>
-          <input
-            placeholder="******"
-            name="password"
-            type="password"
-            id="pwd"
-          />
-        </div>
-        <div className="">
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-    </div>
+      <Row id="test2" justify="space-around">
+      <Card style={{ width: 300, paddingTop: '24px'}} align="middle">
+        <Form name="normal_login" className="login-form" >
+          <Form.Item name="username" rules={[{ required: true, message: 'You forgot your username!'}]}>
+            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+          </Form.Item>
+          <Form.Item name="password" rules={[{ required: true, message: 'You forgot your password!'}]}>
+            <Input prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Password"/>          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" className="login-form-button">
+              Log in
+            </Button>
+          </Form.Item>
+          <Form.Item>
+              Or <a href="">Sign Up!</a>
+          </Form.Item>     
+        </Form>
+      </Card>
+      </Row>
   );
 }
