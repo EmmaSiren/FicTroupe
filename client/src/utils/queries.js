@@ -29,19 +29,15 @@ export const QUERY_CHARACTERS = gql`
   }
 `;
 
-export const QUERY_CHARACTERS = gql`
-  query getAllCharactersOfAUser($username: String!) {
-    characters(username: $username) {
+export const QUERY_CHARACTER = gql`
+query getSingleCharacter($characterId: ID!){
+    character(characterId: $characterId) {
       _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-        commentAuthor
-        createdAt
-      }
+      author
+      background
+      name
+      status
+      universe
     }
   }
 `;
