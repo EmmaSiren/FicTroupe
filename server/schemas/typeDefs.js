@@ -14,6 +14,7 @@ const typeDefs = gql`
     _id: ID!
     name: String!
     author: String!
+    background: String
     universe: String
     status: String!
   }
@@ -21,13 +22,13 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(username: String!): User
-    characters(username: String): [Character]
+    characters: [Character]
     character(characterId:ID!): Character
   }
 
   type Mutation {
     createUser(username: String!, email: String!, password: String!): User
-    createCharacter(name: String!): Character
+    createCharacter(name: String!, background: String, universe: String, status: String): Character
     updateCharacter(id: ID!, background: String!): Character
     deleteCharacter(characterId: ID!): Character
   }
