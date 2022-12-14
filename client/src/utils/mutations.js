@@ -11,9 +11,9 @@ import { gql } from '@apollo/client';
 //     }
 //   }
 // `;
-
+// Test Done. Must have username, email, and password
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!) {
+  mutation createUser($username: String!, $email: String!, $password: String!) {
     createUser(username: $username, email: $email, password: $password) {
       token
       user {
@@ -24,8 +24,9 @@ export const ADD_USER = gql`
   }
 `;
 
+// Test Done. Must have name, background, universe, and status to have it work
 export const ADD_CHARACTER = gql`
-  mutation addCharacter($name: String!, $background: String, $universe: String, $status: String ) {
+  mutation createCharacter($name: String!, $Inputbackground: String, $Inputuniverse: String, $Inputstatus: String ) {
     createCharacter(name: $name, background: $background, universe:$universe, status:$status) {
       _id
       name
@@ -35,9 +36,10 @@ export const ADD_CHARACTER = gql`
   }
 `;
 
+// Test Don. Must have the character id and input background. Currently can only update background
 export const UPDATE_CHARACTER = gql`
-mutation UpdateCharacter($updateCharacterId: ID!, $background: String!) {
-    updateCharacter(id: $updateCharacterId, background: $background) {
+mutation updateCharacter($characterId: ID!, $Inputbackground: String!) {
+    updateCharacter(characterId: $characterId, Inputbackground: $Inputbackground) {
       _id
       author
       background
@@ -45,4 +47,16 @@ mutation UpdateCharacter($updateCharacterId: ID!, $background: String!) {
     }
   }
 `
+
+// Test Done. Muse have the character Id
+export const DELETE_CHARACTER = gql `
+mutation deleteCharacter($characterId: ID!) {
+  deleteUser(id: $characterId) {
+    _id
+    username
+    email
+  }
+}
+`
+
 

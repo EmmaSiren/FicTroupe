@@ -57,7 +57,7 @@ const resolvers = {
             background: Inputbackground,
             universe: Inputuniverse,
             status: Inputstatus,
-          });
+          },);
         await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { myCharacters: character._id} }
@@ -68,36 +68,45 @@ const resolvers = {
       }
     },
 
-    // Update some parameters for a character? Not all?
-    updateCharacter: async( parent, { id, background }) => {
-      if (context.user && user._id === id ) {
-        return await Character.findOneAndUpdate( 
-          { _id: id },
-          { background },
-          { new: true }
-        )
-      }
+    // 
+    updateCharacter: async( parent, { characterId, Inputbackground }) => {
+      /////////////////////Work here //////////////////
+      return await Character.findByIdAndUpdate(
+        { _id: characterId },
+        { $set: { background: Inputbackground } },
+        {new: true}
+      )
+      // if (context.user && user._id === id ) {
+      //   return await Character.findOneAndUpdate( 
+      //     { _id: id },
+      //     { background },
+      //     { new: true }
+      //   )
+      // }
     },
     
     // Delete an original character
     deleteCharacter: async (parent, { characterId }, context) => {
-      if (context.user) {
-        const character = await Character.findOneAndDelete({
-          _id:characterId,
-          author: context.user.username,
-        });
+      if(context.user) {
+        const character = await Character.findByIdAndDelete(characterId)};
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { myCharacters: character._id } }
-        );
-
-        return character;
+        await User.findByIdAndUpdate(
+        )
       }
-    },
+  //     if (context.user) {
+  //       const character = await Character.findOneAndDelete({characterId,
+  //       });
 
+  //       await User.findOneAndUpdate(
+  //         { _id: context.user._id },
+  //         { $pull: { myCharacters: character._id } }
+  //       );
 
-  }
-};
+  //       return character;
+  //     }
+  //   },
+  // }
+  },
+}
 
 module.exports = resolvers;
