@@ -5,11 +5,17 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink, } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-import NavTabs from './components/NavTabs';
-import SignUp from './components/signup';
+// import SignUp from './components/signup';
 import Adopt from './components/pages/Adopt';
 import CharacterList from './components/pages/CharacterList';
 import CreateCharacter from './components/pages/CreateCharacter';
+import Dashboard from './components/pages/Dashboard';
+import Login from './components/pages/Login';
+import Profile from './components/pages/Profile';
+import Menu from './components/Menu';
+
+
+
 
 
 
@@ -39,7 +45,7 @@ const httpLink = createHttpLink({
       <ApolloProvider client={client}>
       <Router>
         <>
-          <NavTabs />
+          <Menu />
           <Routes>
           
           </Routes>
