@@ -14,11 +14,6 @@ import Login from './components/pages/Login';
 import Profile from './components/pages/Profile';
 import Menu from './components/Menu';
 
-
-
-
-
-
 const httpLink = createHttpLink({
     uri: '/graphql',
   });
