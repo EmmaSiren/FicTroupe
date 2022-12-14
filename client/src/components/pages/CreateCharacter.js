@@ -3,16 +3,18 @@ import { UploadOutlined } from '@ant-design/icons';
 import { Form, Input, Button, Upload } from 'antd';
 
 export default function CreateCharacter() {
-  <Form className="form">
-    <p>Name:</p>
-    <Input
-      name="name"
-      type="text"
-    />
+  <div>
+    <Form className="form">
+      <p>Name:</p>
+      <Input
+        name="name"
+        type="text"
+      />
 
-    <Upload>
-      <Button icon={<UploadOutlined />}>Click to Upload</Button>
-    </Upload>
-    <Button className="button" type="button">Submit</Button>
-  </Form>
+      <Upload>
+        <Button icon={<UploadOutlined />}>Click to Upload</Button>
+      </Upload>
+      <Button className="button" type="button">Submit</Button>
+    </Form>
+  </div>
 }
