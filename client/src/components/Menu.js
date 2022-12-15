@@ -29,7 +29,7 @@ export default function HamburgerMenu() {
     if(currentPage === 'CreateCharacter') {
       return <CreateCharacter />;
     }
-    // return <Home />;
+     return <Home />;
   };
 
   const items = [

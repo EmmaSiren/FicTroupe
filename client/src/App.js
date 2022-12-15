@@ -13,7 +13,7 @@ import Home from './components/pages/Home';
 import Menu from './components/Menu';
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'http://localhost:3001/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
