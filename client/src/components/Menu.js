@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import CreateCharacter from './pages/CreateCharacter';
@@ -16,21 +17,23 @@ import { Layout, Menu  } from 'antd';
 
 const { Header, Content, Footer } = Layout;
 
-export default function HamburgerMenu() {
-  const [currentPage, setCurrentPage] = useState('Home');
 
-  const renderPage = () => {
-    if(currentPage === 'Home') {
-      return <Home />;
-    }
-    if(currentPage === 'Dashboard') {
-      return <Dashboard characters={characters}/>;
-    }
-    if(currentPage === 'CreateCharacter') {
-      return <CreateCharacter />;
-    }
-    return <Login />;
-  };
+
+export default function HamburgerMenu() {
+  // const [currentPage, setCurrentPage] = useState('Home');
+
+  // const renderPage = () => {
+  //   if(currentPage === 'Login') {
+  //     return <Login />;
+  //   }
+  //   if(currentPage === 'Dashboard') {
+  //     return <Dashboard characters={characters}/>;
+  //   }
+  //   if(currentPage === 'CreateCharacter') {
+  //     return <CreateCharacter />;
+  //   }
+  //    return <Home />;
+  // };
 
   const items = [
     {
@@ -38,32 +41,42 @@ export default function HamburgerMenu() {
       key: 'Menu',
       icon: <MenuOutlined />,
       children: [
+
         {
-          label: ( 
-            <a href="#home" onClick={() => setCurrentPage('Home')}>
-              <HomeOutlined /> Home
-            </a>
+          label: (
+            <Menu.Item key="1">
+              <HomeOutlined />
+              <span>Home</span>
+              <Link as={Link} to="/" />
+            </Menu.Item>
           ),
         },
         {
-          label: ( 
-            <a href="#dashboard" onClick={() => setCurrentPage('Dashboard')}>
-              <IdcardOutlined /> Dashboard
-            </a>
+          label: (
+            <Menu.Item key="2">
+              <IdcardOutlined />
+              <span>Dashboard</span>
+              <Link as={Link} to="/dashboard" />
+            </Menu.Item>
+
           ),
         },
         {
-          label: ( 
-            <a href="#createCharacter" onClick={() => setCurrentPage('CreateCharacter')}>
-              <UserAddOutlined /> Create Character
-            </a>
+          label: (
+            <Menu.Item key="3">
+              <UserAddOutlined />
+              <span>Create Character</span>
+              <Link as={Link} to="/createcharacter" />
+            </Menu.Item>
           ),
         },
         {
-          label: ( 
-            <a href="#login" onClick={() => setCurrentPage('Login')}>
-              <LoginOutlined /> Login
-            </a>
+          label: (
+            <Menu.Item key="3">
+              <LoginOutlined />
+              <span>Login</span>
+              <Link as={Link} to="/login" />
+            </Menu.Item>
           ),
         },
       ],
@@ -72,31 +85,22 @@ export default function HamburgerMenu() {
 
   return (
     <Layout>
-      <Header style={{ background: '#1890ff' }}>
-        <h1  className="ficTroupe" style={{float: 'right'}}> 
-          <img style={{width: '45px'}}src={Quill} alt=""></img>
-          FicTroupe
-        </h1>
-        <Menu className="menu" mode="horizontal" items={items} />
-      </Header>
-      <h2 className="title">{currentPage}</h2>
-      <Content style={{ padding: '30px' }}>
-        <div className="site-layout-content" style={{ background: 'grey', height: '70vh' }}>
-          {renderPage()}
-        </div>
-      </Content>
-      <Footer style={{ textAlign: 'center' }}>
-        FicTroupe 2022 Created by SAJE
-      </Footer>
-    </Layout>
+        <Header style={{ background: '#1890ff' }}>
+          <h1 className="ficTroupe" style={{ float: 'right' }}>
+            <img style={{ width: '45px' }} src={Quill} alt=""></img>
+            FicTroupe
+          </h1>
 
-      // <header>
-      //   <h1 className="">FicTroupe</h1>
-      //   <h2 className="">{currentPage}</h2>
-      // </header>
-      // <Menu mode="horizontal" items={items} />
-      // <section className="">
-      //   {renderPage()}
-      // </section>
+        <Menu className="menu" mode="horizontal" items={items}>
+        </Menu>
+        </Header>
+       
+        <Content>hello</Content>
+      
+        <Footer style={{ textAlign: 'center' }}>
+          FicTroupe 2022 Created by SAJE
+        </Footer>
+      </Layout>
+       
   );
 }

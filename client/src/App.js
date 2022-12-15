@@ -9,10 +9,13 @@ import CharacterList from './assets/testingdata.js/CharacterList.js';
 import CreateCharacter from './components/pages/CreateCharacter';
 import Dashboard from './components/pages/Dashboard';
 import Login from './components/pages/Login';
+import Home from './components/pages/Home';
 import Menu from './components/Menu';
 
+
+
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'http://localhost:3001/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -35,14 +38,27 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <>
-          <Menu />
-          <Routes>
+      
 
-          </Routes>
-        </>
-      </Router>
+          <Router>
+            <>
+            <Menu /> 
+
+              <Routes>
+                <Route
+                  path='/'
+                  element={<Home />}
+                />
+                <Route
+                  path='/login'
+                  element={<Login />}
+                />
+              </Routes>
+            </>
+            
+          </Router>
+
+      
     </ApolloProvider>
   );
 }
