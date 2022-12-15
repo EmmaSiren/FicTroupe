@@ -18,6 +18,8 @@ class AuthService {
         try {
             const decoded = decode(token);
             if (decoded.exp < Date.now() / 1000) {
+                // Need to add the following code?
+                // localStorate.removeItem('id_token')
                 return true;
             } else return false;
         } catch (err) {
@@ -26,20 +28,16 @@ class AuthService {
     }
 
     getToken() {
-
         return localStorage.getItem('id_token');
     }
 
     login(idToken) {
-
         localStorage.setItem('id_token', idToken);
         window.location.assign('/');
     }
 
     logout() {
-
         localStorage.removeItem('id_token');
-
         window.location.assign('/');
     }
 }
