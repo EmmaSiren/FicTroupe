@@ -10,7 +10,7 @@ const characterSchema = new Schema(
     author: {
       type: String,
     },
-    background: {
+    description: {
       type: String,
     },
     // createdAt: {

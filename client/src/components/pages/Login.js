@@ -6,7 +6,7 @@ export default function Login () {
   return (
     <div>
     <h2 className="title">Login</h2>
-    <Row id="test2" >
+    <Row id="middleAlign" >
       <Card style={{ width: 300, paddingTop: '24px' }} align="middle">
         <Form name="normal_login" className="login-form">
           <Form.Item name="username" rules={[{ required: true, message: 'You forgot your username!' }]}>

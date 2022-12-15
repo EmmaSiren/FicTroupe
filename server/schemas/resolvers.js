@@ -48,13 +48,13 @@ const resolvers = {
 
     // Manage Character information
     // What if the author put some other info when creating a character?
-    createCharacter: async (parent, { name, Inputbackground, Inputuniverse, Inputstatus }, context) => {
+    createCharacter: async (parent, { name, Inputdescription, Inputuniverse, Inputstatus }, context) => {
       if (context.user) {
         const character = await Character.create(
           { 
             name,
             author: context.user.username,
-            background: Inputbackground,
+            description: Inputdescription,
             universe: Inputuniverse,
             status: Inputstatus,
           },);
@@ -69,13 +69,13 @@ const resolvers = {
     },
 
     // 
-    updateCharacter: async( parent, { characterId, Inputbackground }, context) => {
+    updateCharacter: async( parent, { characterId, Inputdescription }, context) => {
       if (context.user) {
         const character = await Character.findById(characterId);
         if (context.user.username == character.author) {
           return await Character.findByIdAndUpdate(
             { _id: characterId },
-            { $set: { background: Inputbackground } },
+            { $set: { description: Inputdescription } },
             {new: true}
           )
         }

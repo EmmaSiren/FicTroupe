@@ -75,13 +75,11 @@ function App() {
                 />
               </Routes>
 
-            <Content>hello</Content>
-      
             <Footer style={{ textAlign: 'center' }}>
               FicTroupe 2022 Created by SAJE
             </Footer>
-            </Layout>
 
+            </Layout>
             </>
           </Router>
 

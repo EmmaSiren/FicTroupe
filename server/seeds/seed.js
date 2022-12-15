@@ -10,7 +10,7 @@ db.once('open', async () => {
   await User.create(userData);
 
   for (let i = 0; i < characterData.length; i++) {
-    const { _id, author, name, background, universe } = await Character.create(characterData[i]);
+    const { _id, author, name, description, universe } = await Character.create(characterData[i]);
     const user = await User.findOneAndUpdate(
       { username: author },
       {
