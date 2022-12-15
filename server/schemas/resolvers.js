@@ -1,4 +1,6 @@
 const { User, Character } = require('../models');
+const { AuthenticationError } = require('apollo-server-express');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
@@ -14,12 +16,12 @@ const resolvers = {
     character: async (parent, { characterId }) => {
       return await Character.findOne({ _id: characterId});
     },
-    // me: async (parent, args, context) => {
-    //   if (context.user) {
-    //     return User.findOne({ _id: context.user._id });
-    //   }
-    //   // throw new AuthenticationError('You need to be logged in!');
-    // },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id });
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
   },
 
   Mutation: {
@@ -29,22 +31,22 @@ const resolvers = {
       // assign token here?
       return user;
     },
-        //login? from MERN/25-Resolver-Content/resolvers.js  Need to add utils
-    // login: async (parent, { username, password }) => {
-    //   const user = await User.findOne({ username });
-    //   if (!user) {
-    //     throw new AuthenticationError('No profile with this email found!');
-    //   }
+    // Manage user login
+    login: async (parent, { username, password }) => {
+      const user = await User.findOne({ username });
+      if (!user) {
+        throw new AuthenticationError('No profile with this username found!');
+      }
 
-    //   const correctPw = await profile.isCorrectPassword(password);
+      const correctPw = await profile.isCorrectPassword(password);
 
-    //   if (!correctPw) {
-    //     throw new AuthenticationError('Incorrect password!');
-    //   }
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect password!');
+      }
 
-    //   const token = signToken(user);
-    //   return { token, user };
-    // },
+      const token = signToken(user);
+      return { token, user };
+    },
 
     // Manage Character information
     // What if the author put some other info when creating a character?
