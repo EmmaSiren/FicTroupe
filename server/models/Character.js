@@ -9,7 +9,6 @@ const characterSchema = new Schema(
     },
     author: {
       type: String,
-      required: true,
     },
     background: {
       type: String,
