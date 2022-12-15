@@ -11,7 +11,12 @@ import Dashboard from './components/pages/Dashboard';
 import Login from './components/pages/Login';
 import Home from './components/pages/Home';
 import Menu from './components/Menu';
+import Quill from './assets/images/quill.png';
 
+
+import { Layout  } from 'antd';
+
+const { Header, Content, Footer } = Layout;
 
 
 const httpLink = createHttpLink({
@@ -42,7 +47,14 @@ function App() {
 
           <Router>
             <>
-            <Menu /> 
+            <Layout>
+            <Header style={{ background: '#1890ff' }}>
+              <h1 className="ficTroupe">
+                <img style={{ width: '45px' }} src={Quill} alt="" id="quill"></img>
+                FicTroupe
+              </h1>
+              <Menu /> 
+            </Header>
 
               <Routes>
                 <Route
@@ -50,12 +62,27 @@ function App() {
                   element={<Home />}
                 />
                 <Route
+                  path='/dashboard'
+                  element={<Dashboard />}
+                />
+                <Route
+                  path='/createCharacter'
+                  element={<CreateCharacter />}
+                />
+                <Route
                   path='/login'
                   element={<Login />}
                 />
               </Routes>
+
+            <Content>hello</Content>
+      
+            <Footer style={{ textAlign: 'center' }}>
+              FicTroupe 2022 Created by SAJE
+            </Footer>
+            </Layout>
+
             </>
-            
           </Router>
 
       

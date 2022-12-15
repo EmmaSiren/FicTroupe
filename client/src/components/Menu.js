@@ -1,11 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import Home from './pages/Home';
-import Dashboard from './pages/Dashboard';
-import CreateCharacter from './pages/CreateCharacter';
-import Quill from '../assets/images/quill.png';
-import characters from '../assets/testingdata.js/CharacterList';
-import Login from './pages/Login';
 import { 
   MenuOutlined, 
   HomeOutlined, 
@@ -13,28 +7,9 @@ import {
   UserAddOutlined, 
   LoginOutlined 
   } from '@ant-design/icons';
-import { Layout, Menu  } from 'antd';
-
-const { Header, Content, Footer } = Layout;
-
-
+import { Menu  } from 'antd';
 
 export default function HamburgerMenu() {
-  // const [currentPage, setCurrentPage] = useState('Home');
-
-  // const renderPage = () => {
-  //   if(currentPage === 'Login') {
-  //     return <Login />;
-  //   }
-  //   if(currentPage === 'Dashboard') {
-  //     return <Dashboard characters={characters}/>;
-  //   }
-  //   if(currentPage === 'CreateCharacter') {
-  //     return <CreateCharacter />;
-  //   }
-  //    return <Home />;
-  // };
-
   const items = [
     {
       label: 'Menu',
@@ -84,23 +59,10 @@ export default function HamburgerMenu() {
   ];
 
   return (
-    <Layout>
-        <Header style={{ background: '#1890ff' }}>
-          <h1 className="ficTroupe" style={{ float: 'right' }}>
-            <img style={{ width: '45px' }} src={Quill} alt=""></img>
-            FicTroupe
-          </h1>
-
-        <Menu className="menu" mode="horizontal" items={items}>
-        </Menu>
-        </Header>
-       
-        <Content>hello</Content>
-      
-        <Footer style={{ textAlign: 'center' }}>
-          FicTroupe 2022 Created by SAJE
-        </Footer>
-      </Layout>
-       
+    <Menu 
+      className="menu" 
+      mode="horizontal" 
+      items={items}
+    />
   );
 }
