@@ -12,6 +12,8 @@ import Login from './components/pages/Login';
 import Home from './components/pages/Home';
 import Menu from './components/Menu';
 
+
+
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
 });
@@ -36,17 +38,27 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <>
-          <Menu />
-          <Routes>
-          <Route 
-            path='/' 
-            element={<Home />} 
-          />
-          </Routes>
-        </>
-      </Router>
+      
+
+          <Router>
+            <>
+            <Menu /> 
+
+              <Routes>
+                <Route
+                  path='/'
+                  element={<Home />}
+                />
+                <Route
+                  path='/login'
+                  element={<Login />}
+                />
+              </Routes>
+            </>
+            
+          </Router>
+
+      
     </ApolloProvider>
   );
 }

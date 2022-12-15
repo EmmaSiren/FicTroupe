@@ -3,6 +3,10 @@ import { TeamOutlined, UserOutlined } from '@ant-design/icons';
 import {QUERY_CHARACTERS} from '../../utils/queries'
 import { useQuery } from '@apollo/client';
 
+import { Layout, Menu  } from 'antd';
+
+const { Header, Content, Footer } = Layout;
+
 export default function Home() {
 
 const { loading, data } = useQuery(QUERY_CHARACTERS)
@@ -13,6 +17,7 @@ if (loading) {
 }
   return(
     <div>
+       <h2 className="title">Home</h2>
       <h2 style={{ textAlign: 'center' }}>New Characters <TeamOutlined /></h2>
       <div style={{padding: '10px'}}>
         {characterData.map(character => (
