@@ -7,6 +7,7 @@ export default function Home() {
 
   const { loading, data } = useQuery(QUERY_CHARACTERS)
   const characterData = data?.characters || [];
+  console.log(characterData)
 
   if (loading) {
     return <h2>LOADING...</h2>;
@@ -19,7 +20,7 @@ export default function Home() {
         {characterData.map(character => (
           <div key={character._id}>
             <h3><UserOutlined /> {character.name}</h3>
-            <p>{character.background}</p>
+            {/* <p>{character.background}</p> */}
             <p>{character.status}</p>
             <p>{character.universe}</p>
             <img className="image" alt="" src={character.img} />

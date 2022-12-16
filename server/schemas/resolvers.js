@@ -1,6 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Character } = require('../models');
-const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -12,7 +11,7 @@ const resolvers = {
       return await User.find({});
     },
     characters: async () => {
-      return await Character.find({});
+      return await Character.find();
     },
     character: async (parent, { characterId }) => {
       return await Character.findOne({ _id: characterId});
