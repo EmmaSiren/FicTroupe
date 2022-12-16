@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import { Link } from "react-router-dom"
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink, } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
@@ -8,7 +8,6 @@ import Quill from './assets/images/quill.png';
 import Menu from './components/Menu';
 import Home from './components/pages/Home';
 import Dashboard from './components/pages/Dashboard';
-import CreateCharacter from './components/pages/CreateCharacter';
 import CharacterList from './assets/testingdata.js/CharacterList.js';
 import Login from './components/pages/Login';
 import Signup from './components/pages/Signup';
@@ -47,11 +46,11 @@ function App() {
 
           <Router>
             <>
-            <Layout>
+            <Layout style={{height: '98vh'}}>
             <Header style={{ background: '#1890ff' }}>
               <h1 className="ficTroupe">
                 <img style={{ width: '45px' }} src={Quill} alt="" id="quill"></img>
-                FicTroupe
+                <Link style={{color: '#000000'}} to="/">FicTroupe</Link>
               </h1>
               <Menu /> 
             </Header>
@@ -64,10 +63,6 @@ function App() {
                 <Route
                   path='/dashboard'
                   element={<Dashboard />}
-                />
-                <Route
-                  path='/createCharacter'
-                  element={<CreateCharacter />}
                 />
                 <Route
                   path='/login'

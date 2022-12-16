@@ -43,9 +43,9 @@ export default function Login (props) {
 
   return (
     <div>
-    <h2 className="title">Login</h2>
-    <Row id="middleAlign" >
-      <Card style={{ width: 300, paddingTop: '24px' }} align="middle">
+      <h2 className="title">Login</h2>
+      <Row id="middleAlign">
+      <Card style={{ width: 300, paddingTop: '24px'}} align="middle">
         <Form name="normal_login" className="login-form">
           <Form.Item name="username" rules={[{ required: true, message: 'You forgot your username!' }]}>
             <Input prefix={<UserOutlined className="site-form-item-icon" />}

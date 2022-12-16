@@ -78,14 +78,9 @@ export default function CreateCharacter() {
   };
 
   return (
-    <div>
-      <h2 className="title">Create Character</h2>
-      <Row id="middleAlign" >
-          <Button onClick={() => { setOpen(true) }}>
-            Create New Character
-          </Button>
-          <CreateForm open={open} onCreate={onCreate} onCancel={() => { setOpen(false) }} />
-      </Row>
-    </div>
+    <Row id="middleAlign" >
+      <Button onClick={() => { setOpen(true) }}>Create New Character</Button>
+      <CreateForm open={open} onCreate={onCreate} onCancel={() => { setOpen(false) }} />
+    </Row>
   );
 };
