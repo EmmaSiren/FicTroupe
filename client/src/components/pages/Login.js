@@ -66,10 +66,11 @@ export default function Login (props) {
             </Button>
           </Form.Item>
           <Form.Item>
-              Or <a href="./signup">Sign Up!</a>
-          </Form.Item>     
+            Or <a href="/signUp">Sign Up!</a>
+          </Form.Item>
         </Form>
       </Card>
-      </Row>
+    </Row>
+    </div>
   );
 }

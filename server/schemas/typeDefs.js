@@ -14,7 +14,7 @@ const typeDefs = gql`
     _id: ID!
     name: String!
     author: String
-    background: String
+    description: String
     universe: String
     status: String!
   }

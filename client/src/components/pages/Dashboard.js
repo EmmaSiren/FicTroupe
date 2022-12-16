@@ -5,7 +5,8 @@ import { SmileOutlined, UserOutlined } from '@ant-design/icons';
 
 export default function Dashboard({character}) {
   return(
-    <div className="">
+    <div>
+      <h2 className="title">Dashboard</h2>
       <h2 style={{ textAlign: 'center' }}>Your Characters <SmileOutlined /></h2>
       <div style={{padding: '10px'}}>
         {characters.map(character => (
