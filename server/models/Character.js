@@ -13,16 +13,9 @@ const characterSchema = new Schema(
     description: {
       type: String,
     },
-    // createdAt: {
-    //   type: Date,
-    //   default: Date.now,
-    //   // get: (timestamp) => dateFormat(timestamp),
-    // },
     universe: {
       type: String,
     },
-    // A character can have 00 kinds of status: draft, private, public, available, and sold
-    // Characters that are available for sale and sold only shows limited information
     status: {
       type: String,
       required: true,

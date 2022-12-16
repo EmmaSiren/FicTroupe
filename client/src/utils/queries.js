@@ -42,7 +42,7 @@ query getSingleCharacter($characterId: ID!){
   }
 `;
 
-// Added Me query when the me/login/auth completed in the server
+// Need to fix the query me
 // export const QUERY_ME = gql`
 //   query me {
 //     me {
@@ -50,11 +50,11 @@ query getSingleCharacter($characterId: ID!){
 //       username
 //       email
 //       myCharacters {
-            // _id
-            // name
-            // background
-            // universe
-            // status
+//             _id
+//             name
+//             background
+//             universe
+//             status
 //     }
 //   }
 // `;
