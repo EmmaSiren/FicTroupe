@@ -2,12 +2,15 @@
   font-family: 'La Belle Aurore', cursive;
   font-size: 50px;
   margin-top: 6px;
+  float: right;
 }
+
 .menu {
   background: transparent;
   font-family: 'Corinthia', cursive;
   font-size: 30px;
   font-weight: bold;
+  border-bottom: 0;
 }
 
 .ant-menu-item {
@@ -31,11 +34,44 @@ h2 {
 }
 
 #test2 {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 30%;
-  margin: auto;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+
+
+@media screen and (min-width: 374px) and (max-width: 765px) {
+  .ant-layout .ant-layout-header {
+    padding: 10px 5px 10px 5px;
+    height: 80px;
+  }
+
+  .ficTroupe {
+    font-size: 45px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .ant-layout .ant-layout-header {
+    height: 100px;
+  }
+
+  img#quill {
+    width: 20px;
+  }
+
+  .ficTroupe {
+    font-size: 40px;
+  }
+
+  h1.ficTroupe {
+    float: none;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }  
+
+  .menu {
+    margin-top: -30px;
+    justify-content: center;
+  }
 }
