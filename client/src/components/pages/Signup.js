@@ -6,14 +6,6 @@ import { ADD_USER } from '../../utils/mutations'
 import { Card, Button, Form, Input, Row } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
-const formItemLayout = {
-  labelCol: {xs: { span: 24 }, sm: { span: 8 }},
-  wrapperCol: {xs: { span: 24 }, sm: { span: 16 }},
-};
-const tailFormItemLayout = {
-  wrapperCol: {xs: { span: 24, offset: 0 }, sm: { span: 16, offset: 8 }},
-};
-
 export default function Signup(props) {
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
   const [addUser] = useMutation(ADD_USER);
@@ -67,12 +59,12 @@ export default function Signup(props) {
   // };
 
   return (
-    <div>
+    <div style={{ background: '#FFDAD1', height: '98vh'}}>
     <h2 className="title">Sign Up</h2>
       <Row id="test2" justify="space-around">
-        <Card style={{ width: 300, paddingTop: '24px' }} align="middle">
+        <Card style={{ width: 300, paddingTop: '24px', background: '#211534' }} align="middle">
 
-          <Form {...formItemLayout} form={form} name="register" onSubmit={handleFormSubmit}>
+          <Form form={form} name="register" onSubmit={handleFormSubmit}>
 
             <Form.Item name="username" rules={[{ required: true, message: 'Please input your username!', whitespace: true }]}>
               <Input 
@@ -101,13 +93,13 @@ export default function Signup(props) {
                 onChange={handleInputChange} 
               />
             </Form.Item>
-            <Form.Item {...tailFormItemLayout}>
-              <Button type="primary" htmlType="submit">
+            <Form.Item>
+              <Button type="primary" htmlType="submit" className="handleeButton">
                 Sign Up
               </Button>
             </Form.Item>
             <Form.Item>
-              Or <Link to="/login">Login</Link>
+              <Link style={{fontFamily: "'Handlee', cursive", fontSize: '17px'}} to="/login">Login</Link>
             </Form.Item>
 
           </Form>

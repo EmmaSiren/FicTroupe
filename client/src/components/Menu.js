@@ -20,7 +20,7 @@ export default function HamburgerMenu() {
           label: (
             <Menu.Item key="1">
               <HomeOutlined />
-              <span>Home</span>
+              <span className="menuItems">Home</span>
               <Link to="/" />
             </Menu.Item>
           ),
@@ -29,7 +29,7 @@ export default function HamburgerMenu() {
           label: (
             <Menu.Item key="2">
               <IdcardOutlined />
-              <span>Dashboard</span>
+              <span className="menuItems">Dashboard</span>
               <Link to="/dashboard" />
             </Menu.Item>
 
@@ -39,7 +39,7 @@ export default function HamburgerMenu() {
           label: (
             <Menu.Item key="3">
               <LoginOutlined />
-              <span>Logout</span>
+              <span className="menuItems">Logout</span>
               <Link to="/" />
             </Menu.Item>
           ),
@@ -49,7 +49,7 @@ export default function HamburgerMenu() {
   ];
 
 
-    if(Auth.loggedIn()) {
+    if(!Auth.loggedIn()) {
       return (
         <Menu 
           className="menu"
@@ -59,8 +59,8 @@ export default function HamburgerMenu() {
       )
     } return (
         <>
-          <Link className="test" style={{paddingRight: '20px'}} to="/login">Login</Link>
-          <Link className="test" style={{paddingLeft: '20px'}} to="/signup">Sign Up</Link>
+          <Link className="loggedOut" style={{paddingRight: '20px'}} to="/login">Login</Link>
+          <Link className="loggedOut" style={{paddingLeft: '20px'}} to="/signup">Sign Up</Link>
         </>
     );
 

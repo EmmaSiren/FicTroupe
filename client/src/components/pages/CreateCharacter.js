@@ -15,6 +15,7 @@ const CreateForm = ({ open, onCreate, onCancel }) => {
 
   return (
     <Modal
+      className="handlee"
       open={open}
       title="New Character"
       okText="Create"
@@ -79,7 +80,7 @@ export default function CreateCharacter() {
 
   return (
     <Row id="middleAlign" >
-      <Button onClick={() => { setOpen(true) }}>Create New Character</Button>
+      <Button className="handleeButton" onClick={() => { setOpen(true) }}>Create New Character</Button>
       <CreateForm open={open} onCreate={onCreate} onCancel={() => { setOpen(false) }} />
     </Row>
   );
