@@ -1,13 +1,13 @@
 import React from 'react';
+import Auth from "../utils/auth";
 import { Link } from 'react-router-dom';
 import { 
   MenuOutlined, 
   HomeOutlined, 
   IdcardOutlined, 
-  UserAddOutlined, 
   LoginOutlined 
   } from '@ant-design/icons';
-import { Menu  } from 'antd';
+import { Menu } from 'antd';
 
 export default function HamburgerMenu() {
   const items = [
@@ -16,13 +16,12 @@ export default function HamburgerMenu() {
       key: 'Menu',
       icon: <MenuOutlined />,
       children: [
-
         {
           label: (
             <Menu.Item key="1">
               <HomeOutlined />
               <span>Home</span>
-              <Link as={Link} to="/" />
+              <Link to="/" />
             </Menu.Item>
           ),
         },
@@ -31,7 +30,7 @@ export default function HamburgerMenu() {
             <Menu.Item key="2">
               <IdcardOutlined />
               <span>Dashboard</span>
-              <Link as={Link} to="/dashboard" />
+              <Link to="/dashboard" />
             </Menu.Item>
 
           ),
@@ -39,18 +38,9 @@ export default function HamburgerMenu() {
         {
           label: (
             <Menu.Item key="3">
-              <UserAddOutlined />
-              <span>Create Character</span>
-              <Link as={Link} to="/createcharacter" />
-            </Menu.Item>
-          ),
-        },
-        {
-          label: (
-            <Menu.Item key="3">
               <LoginOutlined />
-              <span>Login</span>
-              <Link as={Link} to="/login" />
+              <span>Logout</span>
+              <Link to="/" />
             </Menu.Item>
           ),
         },
@@ -58,11 +48,20 @@ export default function HamburgerMenu() {
     },
   ];
 
-  return (
-    <Menu 
-      className="menu" 
-      mode="horizontal" 
-      items={items}
-    />
-  );
+
+    if(Auth.loggedIn()) {
+      return (
+        <Menu 
+          className="menu"
+          mode="horizontal"
+          items={items}
+        />
+      )
+    } return (
+        <>
+          <Link className="test" style={{paddingRight: '20px'}} to="/login">Login</Link>
+          <Link className="test" style={{paddingLeft: '20px'}} to="/signup">Sign Up</Link>
+        </>
+    );
+
 }
