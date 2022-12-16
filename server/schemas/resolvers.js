@@ -1,4 +1,6 @@
+const { AuthenticationError } = require('apollo-server-express');
 const { User, Character } = require('../models');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
@@ -26,20 +28,21 @@ const resolvers = {
     // Manage user information
     createUser: async (parent, { username, email, password}) => {
       const user = await User.create({ username, email, password});
-      // assign token here?
-      return user;
+      const token = signToken(user);
+      return { token, user };
     },
         //login? from MERN/25-Resolver-Content/resolvers.js  Need to add utils
     // login: async (parent, { username, password }) => {
     //   const user = await User.findOne({ username });
+
     //   if (!user) {
     //     throw new AuthenticationError('No profile with this email found!');
     //   }
 
-    //   const correctPw = await profile.isCorrectPassword(password);
+    //   const correctPw = await user.isCorrectPassword(password);
 
     //   if (!correctPw) {
-    //     throw new AuthenticationError('Incorrect password!');
+    //     throw new AuthenticationError('Incorrect credentials!');
     //   }
 
     //   const token = signToken(user);
