@@ -13,12 +13,19 @@ import { gql } from '@apollo/client';
 // `;
 // Test Done. Must have username, email, and password
 export const ADD_USER = gql`
-  mutation createUser($username: String!, $email: String!, $password: String!) {
-    createUser(username: $username, email: $email, password: $password) {
+  mutation createUser(
+    $username: String! 
+    $email: String! 
+    $password: String!
+    ) {
+    createUser(
+      username: $username 
+      email: $email 
+      password: $password
+      ) {
       token
       user {
         _id
-        username
       }
     }
   }
