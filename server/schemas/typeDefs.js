@@ -14,7 +14,7 @@ const typeDefs = gql`
     _id: ID!
     name: String!
     author: String
-    background: String
+    description: String
     universe: String
     status: String!
   }
@@ -28,8 +28,8 @@ const typeDefs = gql`
 
   type Mutation {
     createUser(username: String!, email: String!, password: String!): User
-    createCharacter(name: String!, Inputbackground: String!, Inputuniverse: String!, Inputstatus: String!): Character
-    updateCharacter(characterId: ID!, Inputbackground: String!): Character
+    createCharacter(name: String!, Inputdescription: String!, Inputuniverse: String!, Inputstatus: String!): Character
+    updateCharacter(characterId: ID!, Inputdescription: String!): Character
     deleteCharacter(characterId: ID!): Character
   }
 `;
