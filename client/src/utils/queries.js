@@ -22,8 +22,8 @@ export const QUERY_CHARACTERS = gql`
     characters {
         _id
         name
-        background
         universe
+        description
         status
     }
   }
