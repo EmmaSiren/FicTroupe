@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Card, Button, Form, Input, Row } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { useMutation } from '@apollo/client';
@@ -40,7 +41,9 @@ export default function Login (props) {
   // });
 
   return (
-      <Row id="test2" justify="space-around">
+    <div>
+      <h2 className="title">Login</h2>
+      <Row id="middleAlign">
       <Card style={{ width: 300, paddingTop: '24px'}} align="middle">
         <Form name="normal_login" className="login-form">
           <Form.Item name="username" rules={[{ required: true, message: 'You forgot your username!'}]}>
@@ -66,7 +69,7 @@ export default function Login (props) {
             </Button>
           </Form.Item>
           <Form.Item>
-            Or <a href="/signUp">Sign Up!</a>
+            Or <Link to="/signup">Sign Up!</Link>
           </Form.Item>
         </Form>
       </Card>
