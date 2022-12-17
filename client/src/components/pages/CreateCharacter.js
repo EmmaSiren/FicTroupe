@@ -1,17 +1,56 @@
 import React, { useState } from 'react';
-import { Button, Form, Input, Modal, Radio, Upload, Row, Card  } from 'antd';
-import { PlusOutlined  } from '@ant-design/icons';
+import { Button, Form, Input, Modal, Radio, Upload, Row, message, Card  } from 'antd';
+import { LoadingOutlined, PlusOutlined  } from '@ant-design/icons';
+
+// import { imgUpload } from '../../utils/helper';
+
 
 const CreateForm = ({ open, onCreate, onCancel }) => {
   const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState();
   const uploadButton = (
-    <div>
-      <PlusOutlined />
+    <div >
+      {loading ? <LoadingOutlined /> : <PlusOutlined />}
       <div style={{ marginTop: 8 }}>
         Upload
       </div>
     </div>
   );
+
+  const getBase64 = (img, callback) => {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result));
+    reader.readAsDataURL(img);
+  };
+
+  const beforeUpload = (file) => {
+    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG/PNG file!');
+    }
+    const isLt2M = file.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+      message.error('Image must smaller than 2MB!');
+    }
+    return isJpgOrPng && isLt2M;
+  };
+
+  const handleChange = (info) => {
+    if (info.file.status === 'uploading') {
+      setLoading(true);
+      return;
+    }
+    if (info.file.status === 'done') {
+      console.log("INFO"+info.file)
+
+      // Get this url from response in real world.
+      getBase64(info.file.originFileObj, (url) => {
+        setLoading(false);
+        setImageUrl(url);
+      });
+    }
+  };
 
   return (
     <Modal
@@ -50,10 +89,26 @@ const CreateForm = ({ open, onCreate, onCancel }) => {
         >
           <Input type="textarea" />
         </Form.Item>
-        <Form.Item name="photo"
+        <Form.Item name="imageFile"
           label="Upload a photo of them.">
-          <Upload listType="picture-card">
-            {uploadButton}
+          <Upload 
+          // action={"http://localhost:3000"}
+          listType="picture-card"
+          accept="image/jpeg, image/png, image/jpg"
+          beforeUpload={beforeUpload}
+      onChange={handleChange}
+          >
+            {imageUrl ? (
+        <img
+          src={imageUrl}
+          alt="avatar"
+          style={{
+            width: '100%',
+          }}
+        />
+      ) : (
+        uploadButton
+      )}
           </Upload>
         </Form.Item>
         <Form.Item name="status" 
@@ -73,10 +128,32 @@ const CreateForm = ({ open, onCreate, onCancel }) => {
 
 export default function CreateCharacter() {
   const [open, setOpen] = useState(false);
-  const onCreate = (values) => {
+  const onCreate = async (values) => {
     console.log('Received values of form: ', values);
     setOpen(false);
-  };
+const data = new FormData();
+data.append("image-file",values.imageFile.file.originFileObj)
+    
+    console.log(data);
+      // const photoFile = values.photo.file
+    
+    // console.log ("HERE"+photoFile)
+      
+        const response = await fetch('http://localhost:3001/', {
+          method: 'POST',
+          body: data,
+          headers: { 'Content-Type': 'multipart/form-data' },
+        });
+    
+        if (response.ok) {
+          console.log("WORKED");
+        } else {
+          console.log("DID NOT");
+        }
+   
+
+
+  }
 
   return (
     <Row id="middleAlign" >
