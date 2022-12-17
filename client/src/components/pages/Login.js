@@ -42,10 +42,10 @@ export default function Login (props) {
 
 
   return (
-    <div>
+    <div style={{ background: '#FFDAD1', height: '98vh'}}>
       <h2 className="title">Login</h2>
       <Row id="middleAlign">
-      <Card style={{ width: 300, paddingTop: '24px'}} align="middle">
+      <Card style={{ width: 300, paddingTop: '24px', background: '#211534'}} align="middle">
         <Form name="normal_login" className="login-form">
           <Form.Item name="username" rules={[{ required: true, message: 'You forgot your username!' }]}>
             <Input prefix={<UserOutlined className="site-form-item-icon" />}
@@ -66,11 +66,11 @@ export default function Login (props) {
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" className="login-form-button" onClick={handleSubmit}>
-              Log in
+              Login
             </Button>
           </Form.Item>
           <Form.Item>
-            Or <Link to="/signup">Sign Up!</Link>
+            <Link style={{fontFamily: "'Handlee', cursive", fontSize: '15px'}} to="/signup">Sign Up!</Link>
           </Form.Item>
         </Form>
       </Card>

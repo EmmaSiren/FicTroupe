@@ -11,12 +11,18 @@
   font-size: 30px;
   font-weight: bold;
   border-bottom: 0;
+  color: #211534;
 }
 
-.test {
+.menuItems {
+  color: #211534;
+}
+
+.loggedOut {
   font-family: 'Corinthia', cursive;
   font-size: 30px;
   font-weight: bold;
+  color: #211534;
 }
 
 .ant-menu-item {
@@ -29,13 +35,52 @@
   font-size: 60px;
   margin: 0;
   text-align: center;
+  color: #211534;
 }
 
 h2 {
   margin: 0;
+  font-family: 'Handlee', cursive;
 }
 
-.characterInformation {
+#loading {
+  font-family: 'Corinthia', cursive;
+  font-size: 60px;
+  font-style: italic;
+  text-align: center;
+} 
+
+.handlee, Form label, .ant-modal span {
+  font-family: 'Handlee', cursive;
+  color: #211534;
+}
+
+Form label {
+  font-weight: bold;
+}
+
+.handleeButton, .login-form-button, .ant-btn-primary {
+  font-family: 'Handlee', cursive;
+  font-size: 16px;
+  background-color: #FFB4A2;
+}
+
+.ant-modal .ant-modal-header{
+  background: transparent;
+}
+
+span .ant-upload {
+  background-color: rgb(255, 205, 178, 0.7);
+}
+
+.ant-modal .ant-modal-content {
+  background: url('../images/cardBackground.PNG');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; 
+}
+
+.characterInformation  {
   font-family: 'Handlee', cursive;
 }
 
@@ -44,7 +89,9 @@ h2 {
   margin-top: 20px;
 }
 
-
+Footer {
+  font-family: 'La Belle Aurore', cursive;
+}
 
 @media screen and (min-width: 374px) and (max-width: 765px) {
   .ant-layout .ant-layout-header {
