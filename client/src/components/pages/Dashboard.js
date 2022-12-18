@@ -2,8 +2,8 @@ import React from 'react';
 import '../../assets/css/dashboard.css';
 import characters from '../../assets/testingdata.js/CharacterList.js';
 
-export default function Dashboard({character}) {
-  return(
+export default function Dashboard({ character }) {
+  return (
     <div className="container">
       <h1 className="title">Dashboard</h1>
       <h2>Your Characters</h2>
