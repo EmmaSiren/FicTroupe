@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../../utils/auth';
-import { ADD_USER } from '../../utils/mutations'
+import { ADD_USER } from '../../utils/mutations';
+
 import { Card, Button, Form, Input, Row } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
@@ -11,18 +12,16 @@ export default function Signup(props) {
   const [addUser] = useMutation(ADD_USER);
   const [form] = Form.useForm();
 
-  // const [validated] = useState(false);
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const mutationResponse = await addUser({
+    const response = await addUser({
       variables: {
         username: userFormData.username,
         email: userFormData.email,
         password: userFormData.password,
       },
     });
-    const token = mutationResponse.data.addUser.token;
+    const token = response.data.addUser.token;
     Auth.login(token);
   };
 
@@ -32,44 +31,19 @@ export default function Signup(props) {
     setUserFormData({ ...userFormData, [name]: value });
   };
 
-  // const handleSumbit = async (event) => {
-  //     event.preventDefault();
-
-  //     const form = event.currentTarget;
-  //     if (form.checkValid() === false) {
-  //         event.preventDefault();
-  //         event.stopPropagation();
-
-  //     }
-  //     try {
-  //         const response = await newUser(userFormData);
-  //         if (!response.ok) {
-  //             throw new Error('Wrong!');
-  //         }
-  //         const { user } = await response.json();
-  //         console.log(user);
-  //     } catch (err) {
-  //         console.error(err);
-  //     }
-  //     setUserFormData({
-  //         username: '',
-  //         email: '',
-  //         password: '',
-  //     });
-  // };
-
   return (
     <div style={{ background: '#FFDAD1', height: '98vh'}}>
     <h2 className="title">Sign Up</h2>
       <Row id="test2" justify="space-around">
         <Card style={{ width: 300, paddingTop: '24px', background: '#211534' }} align="middle">
 
-          <Form form={form} name="register" onSubmit={handleFormSubmit}>
+          <Form form={form} name="register">
 
             <Form.Item name="username" rules={[{ required: true, message: 'Please input your username!', whitespace: true }]}>
               <Input 
                 prefix={<UserOutlined className="site-form-item-icon" />} 
                 placeholder="Username" 
+                name="username"
                 onChange={handleInputChange}
               />
             </Form.Item>
@@ -82,6 +56,7 @@ export default function Signup(props) {
               <Input 
                 prefix={<UserOutlined className="site-form-item-icon" />} 
                 placeholder="Email" 
+                name="email"
                 onChange={handleInputChange}
                 />
             </Form.Item>
@@ -90,11 +65,12 @@ export default function Signup(props) {
                 prefix={<LockOutlined className="site-form-item-icon" />} 
                 type="password" 
                 placeholder="Password"
+                name="password"
                 onChange={handleInputChange} 
               />
             </Form.Item>
             <Form.Item>
-              <Button type="primary" htmlType="submit" className="handleeButton">
+              <Button type="primary" htmlType="submit" className="handleeButton" onClick={handleFormSubmit}>
                 Sign Up
               </Button>
             </Form.Item>
@@ -106,43 +82,6 @@ export default function Signup(props) {
 
         </Card>
       </Row>
-    </div>
-        // <>
-        //     <Form noValidate validated={validated} onSubmit={handleSumbit}>
-        //         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>Something went wrong with your signup</Alert>
-        //         <Form.Group>
-        //             <Form.Label hmtlFor='username'>Username</Form.Label>
-        //             <Form.Control
-        //                 type='text'
-        //                 placeholder='Your Username'
-        //                 name='username'
-        //                 onChange={handleInputChange}
-        //                 value={userFormData.username}
-        //                 required
-        //             />
-        //             <Form.Control.Feedback type='invalid'>Username is required</Form.Control.Feedback>
-        //         </Form.Group>
-        //         <Form.Group>
-        //             <Form.Label htmlFor='email'>Email</Form.Label>
-        //             <Form.Control
-        //                 type='email'
-        //                 placeholder='Eamil Address'
-        //                 name='email'
-        //                 onChange={handleInputChange}
-        //                 value={userFormData.email}
-        //                 required
-        //             />
-        //             <Form.Control.Feedback type='invalid'>Password is required</Form.Control.Feedback>
-
-        //         </Form.Group>
-        //         <Button
-        //             disabled={!(userFormData.username &&
-        //                 userFormData.email && userFormData.password)}
-        //             type='sumbit'
-        //             variant='Access Granted'>
-        //             Submit
-        //         </Button>
-        //     </Form>
-        // </>
+    </div>      
   );
 };

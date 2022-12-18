@@ -1,14 +1,36 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Card, Button, Form, Input, Row } from 'antd';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { useMutation } from '@apollo/client';
+import { Link } from 'react-router-dom';
 import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
-export default function Login (props) {
+import { Card, Button, Form, Input, Row } from 'antd';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
+
+export default function Login(props) {
   const [formState, setFormState] = useState({ username: '', password: '' });
-  const[login, { error, data }] = useMutation(LOGIN_USER);
+  const[login, { error }] = useMutation(LOGIN_USER);
+
+  // Submit form
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    
+    try {
+      const response = await login({
+        variables: {username: formState.username, password: formState.password},
+      });
+      const token = response.data.login.token;
+      Auth.login(token);
+
+      // const { data } = await login({
+      //   variables: { ...formState },
+      // });
+
+      // Auth.login(data.login.token);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   // Update state based on input changes
   const handleChange = (event) => {
@@ -18,27 +40,13 @@ export default function Login (props) {
       [name]: value,
     })
   };
-
-  // Submit form
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    
-    try {
-      const { data } = await login({
-        variables: { ...formState },
-      });
-
-      Auth.login(data.login.token);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
+  
   // Clear the existing values
   // setFormState({
   //   email: '',
   //   password: '',
   // });
+
 
 
   return (
@@ -51,7 +59,7 @@ export default function Login (props) {
             <Input prefix={<UserOutlined className="site-form-item-icon" />}
               placeholder="Username"
               name="username"
-              value={formState.username}
+              // value={formState.username}
               onChange={handleChange}
             />
           </Form.Item>
@@ -60,10 +68,15 @@ export default function Login (props) {
               type="password"
               placeholder="Password"
               name="password"
-              value={formState.password}
+              // value={formState.password}
               onChange={handleChange}
             />
           </Form.Item>
+          {error ? (
+            <div>
+              <p className="error-text">Wrong username or password</p>
+            </div>
+          ): null}
           <Form.Item>
             <Button type="primary" htmlType="submit" className="login-form-button" onClick={handleSubmit}>
               Login
