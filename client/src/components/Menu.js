@@ -49,7 +49,7 @@ export default function HamburgerMenu() {
   ];
 
 
-    if(!Auth.loggedIn()) {
+    if(Auth.loggedIn()) {
       return (
         <Menu 
           className="menu"
