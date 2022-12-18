@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Button, Form, Input, Modal, Radio, Upload, Row, message, Card  } from 'antd';
 import { LoadingOutlined, PlusOutlined  } from '@ant-design/icons';
+import { useMutation} from '@apollo/client';
+import { ADD_CHARACTER } from '../../utils/mutations';
 
 // import { imgUpload } from '../../utils/helper';
 
 
 const CreateForm = ({ open, onCreate, onCancel }) => {
+
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState();
@@ -65,7 +68,8 @@ const CreateForm = ({ open, onCreate, onCancel }) => {
           .validateFields()
           .then((values) => {
             form.resetFields();
-            onCreate(values);
+            onCreate(values)
+            // CreateCharacter(values)
           })
           .catch((info) => {
             console.log('Validate Failed:', info);
@@ -73,7 +77,7 @@ const CreateForm = ({ open, onCreate, onCancel }) => {
       }}
     >
       <Form form={form} layout="vertical" name="form_in_modal">
-        <Form.Item name="Name"
+        <Form.Item name="name"
           label="What's your character's name?"
           rules={[{ required: true, message: 'Give your character a name!' }]}
         >
@@ -127,29 +131,63 @@ const CreateForm = ({ open, onCreate, onCancel }) => {
 };
 
 export default function CreateCharacter() {
+const [addCharacter] = useMutation(ADD_CHARACTER);
   const [open, setOpen] = useState(false);
+
+
   const onCreate = async (values) => {
     console.log('Received values of form: ', values);
     setOpen(false);
-const data = new FormData();
-data.append("image-file",values.imageFile.file.originFileObj)
+    console.log(values.name)
+    const charName = values.name;
+    const charDesination = values.description;
+
+    const charUniverse = values.universe;
+
+    const charStatus = values.status;
+
+    console.log(typeof(charName))
+
+//     const { items } = values
+
+// const charData = values.map((character) => ({
+//   name: character.name,
+//   description : character.description,
+//   universe : character.universe,
+//   status: character.status
+
+// }));
+const response = await addCharacter({
+  variables: {
+    "name": charName,
+  "description" : charDesination,
+  "universe" : charUniverse,
+  "status" : charStatus
+  },
+  
+});
+
+
+
+    // const data = new FormData();
+// data.append("image-file",values.imageFile.file.originFileObj)
     
-    console.log(data);
-      // const photoFile = values.photo.file
+//     console.log(data);
+//       // const photoFile = values.photo.file
     
-    // console.log ("HERE"+photoFile)
+//     // console.log ("HERE"+photoFile)
       
-        const response = await fetch('http://localhost:3001/', {
-          method: 'POST',
-          body: data,
-          headers: { 'Content-Type': 'multipart/form-data' },
-        });
+//         const response = await fetch('http://localhost:3001/', {
+//           method: 'POST',
+//           body: data,
+//           headers: { 'Content-Type': 'multipart/form-data' },
+//         });
     
-        if (response.ok) {
-          console.log("WORKED");
-        } else {
-          console.log("DID NOT");
-        }
+//         if (response.ok) {
+//           console.log("WORKED");
+//         } else {
+//           console.log("DID NOT");
+//         }
    
 
 
