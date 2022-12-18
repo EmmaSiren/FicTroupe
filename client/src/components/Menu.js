@@ -1,6 +1,7 @@
 import React from 'react';
 import Auth from "../utils/auth";
 import { Link } from 'react-router-dom';
+
 import { 
   MenuOutlined, 
   HomeOutlined, 
@@ -19,18 +20,14 @@ export default function HamburgerMenu() {
         {
           label: (
             <Menu.Item key="1">
-              <HomeOutlined />
-              <span className="menuItems">Home</span>
-              <Link to="/" />
+              <Link to="/"><HomeOutlined /> Home</Link>
             </Menu.Item>
           ),
         },
         {
           label: (
             <Menu.Item key="2">
-              <IdcardOutlined />
-              <span className="menuItems">Dashboard</span>
-              <Link to="/dashboard" />
+              <Link to="/dashboard"><IdcardOutlined /> Dashboard</Link>
             </Menu.Item>
 
           ),
@@ -38,9 +35,7 @@ export default function HamburgerMenu() {
         {
           label: (
             <Menu.Item key="3">
-              <LoginOutlined />
-              <span className="menuItems">Logout</span>
-              <Link to="/" />
+              <Link to="/" onClick={() => Auth.logout()}><LoginOutlined /> Logout</Link>
             </Menu.Item>
           ),
         },
@@ -49,19 +44,21 @@ export default function HamburgerMenu() {
   ];
 
 
-    if(!Auth.loggedIn()) {
+    if(Auth.loggedIn()) {
       return (
         <Menu 
           className="menu"
           mode="horizontal"
           items={items}
         />
-      )
-    } return (
+      );
+    } else { 
+      return (
         <>
           <Link className="loggedOut" style={{paddingRight: '20px'}} to="/login">Login</Link>
           <Link className="loggedOut" style={{paddingLeft: '20px'}} to="/signup">Sign Up</Link>
         </>
     );
+    }
 
 }

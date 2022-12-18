@@ -1,32 +1,33 @@
+const { AuthenticationError } = require('apollo-server-express');
 const { User, Character } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    user: async (parent, { username }) => {
-      return await User.findOne({ username }).populate('myCharacters');
-    },
+    // user: async (parent, { username }) => {
+    //   return await User.findOne({ username }).populate('myCharacters');
+    // },
     users: async () => {
       return await User.find({});
     },
-    characters: async () => {
-      return await Character.find();
-    },
-    character: async (parent, { characterId }) => {
-      return await Character.findOne({ _id: characterId});
-    },
-    me: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOne({ _id: context.user._id });
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
+  //   characters: async () => {
+  //     return await Character.find();
+  //   },
+  //   character: async (parent, { characterId }) => {
+  //     return await Character.findOne({ _id: characterId});
+  //   },
+  //   me: async (parent, args, context) => {
+  //     if (context.user) {
+  //       return User.findOne({ _id: context.user._id });
+  //     }
+  //     throw new AuthenticationError('You need to be logged in!');
+  //   },
   },
 
   Mutation: {
     // Manage user information
-    createUser: async (parent, { username, email, password}) => {
-      const user = await User.create({ username, email, password});
+    createUser: async (parent, args) => {
+      const user = await User.create( args );
       const token = signToken(user);
       return { token, user };
     },
@@ -34,13 +35,13 @@ const resolvers = {
     login: async (parent, { username, password }) => {
       const user = await User.findOne({ username });
       if (!user) {
-        throw new AuthenticationError('No profile with this username found!');
+        throw new AuthenticationError('Wrong username or password!');
       }
 
-      const correctPw = await profile.isCorrectPassword(password);
+      const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect password!');
+        throw new AuthenticationError('Wrong username or password!');
       }
 
       const token = signToken(user);
