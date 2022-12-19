@@ -33,11 +33,11 @@ export const ADD_USER = gql`
 
 // Test Done. Must have name, background, universe, and status to have it work
 export const ADD_CHARACTER = gql`
-  mutation createCharacter($name: String!, $Inputbackground: String, $Inputuniverse: String, $Inputstatus: String ) {
-    createCharacter(name: $name, background: $background, universe:$universe, status:$status) {
-      _id
+  mutation createCharacter($name: String!, $description: String!, $universe: String!, $status: String! ) {
+    createCharacter(name: $name, description: $description, universe:$universe, status:$status) {
       name
-      background
+      description
+      universe
       status
     }
   }

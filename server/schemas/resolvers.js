@@ -50,24 +50,24 @@ const resolvers = {
 
     // Manage Character information
     // What if the author put some other info when creating a character?
-    createCharacter: async (parent, { name, Inputdescription, Inputuniverse, Inputstatus }, context) => {
-      if (context.user) {
+    createCharacter: async (parent, { name, description, universe, status }, context) => {
+      // if (context.user) {
+        
         const character = await Character.create(
           { 
             name,
-            author: context.user.username,
-            description: Inputdescription,
-            universe: Inputuniverse,
-            status: Inputstatus,
+            description: description,
+            universe: universe,
+            status: status,
           },);
         await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { myCharacters: character._id} }
         )
         return character;
-      } else {
-        console.log("Please log in to create a new character!");
-      }
+      // } else {
+      //   console.log("Please log in to create a new character!");
+      // }
     },
 
     // 
