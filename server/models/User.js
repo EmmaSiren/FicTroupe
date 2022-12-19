@@ -44,7 +44,7 @@ userSchema.virtual('characterCount').get(function () {
 // Hash the password
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
-    const saltRounds = 10;
+    const saltRounds = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
 

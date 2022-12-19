@@ -7,6 +7,9 @@ const characterSchema = new Schema(
       required: true,
       unique: true,
     },
+    author: {
+      type: String,
+    },
     description: {
       type: String,
     },
