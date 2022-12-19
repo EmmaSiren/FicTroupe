@@ -4,6 +4,18 @@ import { SmileOutlined, UserOutlined } from '@ant-design/icons';
 import {QUERY_CHARACTERS} from '../../utils/queries'
 import { useQuery } from '@apollo/client';
 
+
+export default function Dashboard({ character }) {
+  return (
+    <div className="container">
+      <h1 className="title">Dashboard</h1>
+      <h2>Your Characters</h2>
+      <div className="row">
+        {characters.map(character => (
+          <div className="col" key={character.id}>
+            <h3>{character.name}</h3>
+            <img className="image" alt="" src={character.img} />
+
 export default function Dashboard({character}) {
 
   const { loading, data } = useQuery(QUERY_CHARACTERS)
@@ -23,6 +35,7 @@ export default function Dashboard({character}) {
           <div key={character._id}>
             <h3><UserOutlined /> {character.name}</h3>
             {/* <img style={{width: '100px'}} alt="" src={character.img} /> */}
+
           </div>
         ))}
       </div>
