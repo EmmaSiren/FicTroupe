@@ -7,8 +7,8 @@ db.once('open', async () => {
   await Character.deleteMany({});
   await User.deleteMany({});
 
-  const test = await User.create(userData);
-  console.log(test);
+  console.log(userData);
+  await User.create(userData);
 
   for (let i = 0; i < characterData.length; i++) {
     const { _id, author, name, description, universe } = await Character.create(characterData[i]);
@@ -26,3 +26,4 @@ db.once('open', async () => {
   console.log('Characters and Users seeded!');
   process.exit(0);
 });
+

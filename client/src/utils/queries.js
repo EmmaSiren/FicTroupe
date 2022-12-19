@@ -10,23 +10,26 @@ export const QUERY_USERS = gql`
   }
 `;
 
-// query user($username: String!) {
-//   user(username: $username) {
-//     _id
-//     username
-//     email
-//     myCharacters {
-//       _id
-//       name
-//       background
-//       universe
-//       status
-//     }
-//   }
-// }
+export const QUERY_USER = gql`
+  query user($username: String!) {
+    user(username: $username) {
+      _id
+      username
+      email
+      myCharacters {
+        _id
+        name
+        description
+        universe
+        status
+      }
+    }
+  }
+`;
+
 
 export const QUERY_CHARACTERS = gql`
-  query getAllCharacters {
+  query getCharacters {
     characters {
         _id
         name
