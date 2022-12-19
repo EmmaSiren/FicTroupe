@@ -22,10 +22,6 @@ export default function Login(props) {
       const token = response.data.login.token;
       Auth.login(token);
 
-      // const { data } = await login({
-      //   variables: { ...formState },
-      // });
-
       // Auth.login(data.login.token);
     } catch (e) {
       console.log(e);
@@ -41,16 +37,8 @@ export default function Login(props) {
     })
   };
   
-  // Clear the existing values
-  // setFormState({
-  //   email: '',
-  //   password: '',
-  // });
-
-
-
   return (
-    <div style={{ background: '#FFDAD1', height: '98vh'}}>
+    <div  className="testingbg" style={{ height: '98vh'}}>
       <h2 className="title">Login</h2>
       <Row id="middleAlign">
       <Card style={{ width: 300, paddingTop: '24px', background: '#211534'}} align="middle">
@@ -59,7 +47,6 @@ export default function Login(props) {
             <Input prefix={<UserOutlined className="site-form-item-icon" />}
               placeholder="Username"
               name="username"
-              // value={formState.username}
               onChange={handleChange}
             />
           </Form.Item>
@@ -68,7 +55,6 @@ export default function Login(props) {
               type="password"
               placeholder="Password"
               name="password"
-              // value={formState.password}
               onChange={handleChange}
             />
           </Form.Item>

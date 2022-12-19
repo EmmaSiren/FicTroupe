@@ -13,18 +13,16 @@ export default function Home() {
   // console.log(characterData)
 
   if (loading) {
+    return <h2 className="testingbg" style={{ height: '98vh'}} id="loading">Loading...</h2>;
 
-    return <h2 style={{ background: '#FFDAD1', height: '98vh' }} id="loading">Loading...</h2>;
   }
-
-  <div style={{ background: '#FFDAD1', height: '98vh' }}>
+  return (
+  <div className="testingbg" style={{ height: '98vh'}}>
     <h2 className="title">Home</h2>
     <h2 style={{ textAlign: 'center' }}>New Characters <TeamOutlined />
     </h2>
   </div>
-
-  return (
-    <div style={{ padding: '10px' }}>
+  <div style={{ padding: '10px' }}>
       {characterData.map(character => (
         <div key={character._id}>
           <Card
@@ -49,9 +47,6 @@ export default function Home() {
         </div>
       ))
       }
-
-
-
     </div >
 
   )
