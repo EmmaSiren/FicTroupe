@@ -7,7 +7,8 @@ db.once('open', async () => {
   await Character.deleteMany({});
   await User.deleteMany({});
 
-  await User.create(userData);
+  const test = await User.create(userData);
+  console.log(test);
 
   for (let i = 0; i < characterData.length; i++) {
     const { _id, author, name, description, universe } = await Character.create(characterData[i]);

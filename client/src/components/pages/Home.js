@@ -17,7 +17,8 @@ export default function Home() {
 
   }
   return (
-  <div className="testingbg" style={{ height: '98vh'}}>
+    <div>  
+      <div className="testingbg" style={{ height: '98vh'}}>
     <h2 className="title">Home</h2>
     <h2 style={{ textAlign: 'center' }}>New Characters <TeamOutlined />
     </h2>
@@ -47,7 +48,8 @@ export default function Home() {
         </div>
       ))
       }
-    </div >
+    </div ></div>
+
 
   )
 };
