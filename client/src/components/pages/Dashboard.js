@@ -1,8 +1,8 @@
 import React from 'react';
 import CreateCharacter from './CreateCharacter';
 import { SmileOutlined, UserOutlined } from '@ant-design/icons';
-// import {QUERY_USER} from '../../utils/queries'
-import {QUERY_CHARACTERS} from '../../utils/queries'
+import {QUERY_USER} from '../../utils/queries'
+// import {QUERY_CHARACTERS} from '../../utils/queries'
 
 import { useQuery } from '@apollo/client';
 
@@ -21,11 +21,25 @@ import { useQuery } from '@apollo/client';
 
 export default function Dashboard() {
 
-  const { loading, data } = useQuery(QUERY_CHARACTERS)
-  const characterData = data?.characters || [];
-  // const filterData = 
-  console.log("HERE"+characterData)
+  const { loading, data } = useQuery(QUERY_USER)
+  const characterData = data?.user || [];
+  // console.log("HERE"+characterData.user.myCharacters)
+  // console.log(data)
+  // console.log(data.user.myCharacters)
+  // const characterData =  data.user.myCharacters
+  console.log(characterData)
   console.log(data)
+  // console.log(characterData.myCharacters)
+
+  const displayCharacters = characterData.myCharacters;
+
+  console.log(displayCharacters)
+
+
+
+
+  // const characters=data.myCharacters
+  // .user.myCharacters
   
   if (loading) {
     return <h2  className="testingbg" style={{ height: '98vh'}} id="loading">Loading...</h2>;
@@ -36,16 +50,27 @@ export default function Dashboard() {
       <h2 style={{ textAlign: 'center', color: '#211534' }}>Your Characters <SmileOutlined /></h2>
       <CreateCharacter className="handlee"/>
       <div className="handlee" style={{padding: '10px'}}>
-        {characterData.map(character => (
-          <div key={character._id}>
-            <h3><UserOutlined /> {character.name}</h3>
-            {/* <h3><UserOutlined /> {character.author}</h3> */}
+        
+      {displayCharacters.map(character => (
+  <div key={character._id}>
+    <h3><UserOutlined /> {character.name}</h3>
+    <h3><UserOutlined /> {character.description}</h3>
+    <h3><UserOutlined /> {character.universe}</h3>
+    <h3><UserOutlined /> {character.status}</h3>
 
-            {/* <img style={{width: '100px'}} alt="" src={character.img} /> */}
 
-          </div>
-        ))}
+
+
+    {/* <h3><UserOutlined /> {character.author}</h3> */}
+
+    {/* <img style={{width: '100px'}} alt="" src={character.img} /> */}
+
+  </div>
+))}
+
       </div>
     </div>
   );
 }
+
+

@@ -12,7 +12,7 @@ const resolvers = {
       // return await User.findOne({ username: context.user._id })
      
       if (context.user) {
-        const me = await User.findOne({ _id: context.user._id })
+        const me = await User.findById({ _id: context.user._id }).populate('myCharacters');
         console.log(me);
         return me;
       }},

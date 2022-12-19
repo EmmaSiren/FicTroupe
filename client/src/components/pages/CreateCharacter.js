@@ -3,7 +3,7 @@ import { Button, Form, Input, Modal, Radio, Upload, Row, message, Card  } from '
 import { LoadingOutlined, PlusOutlined  } from '@ant-design/icons';
 import { useMutation} from '@apollo/client';
 import { ADD_CHARACTER } from '../../utils/mutations';
-
+import  Dashboard  from './Dashboard';
 
 // import { imgUpload } from '../../utils/helper';
 
@@ -188,7 +188,7 @@ console.log(response);
 //           console.log("DID NOT");
 //         }
    
-
+// Dashboard()
 
   }
 
