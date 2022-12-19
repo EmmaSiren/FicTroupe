@@ -32,7 +32,7 @@ export default function Signup(props) {
   };
 
   return (
-    <div style={{ background: '#FFDAD1', height: '98vh'}}>
+    <div  className="testingbg" style={{ height: '98vh'}}>
     <h2 className="title">Sign Up</h2>
       <Row id="test2" justify="space-around">
         <Card style={{ width: 300, paddingTop: '24px', background: '#211534' }} align="middle">

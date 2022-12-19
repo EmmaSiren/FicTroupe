@@ -11,10 +11,10 @@ export default function Dashboard({character}) {
   console.log(characterData)
   
   if (loading) {
-    return <h2 style={{background: '#FFDAD1', height: '98vh'}} id="loading">Loading...</h2>;
+    return <h2  className="testingbg" style={{ height: '98vh'}} id="loading">Loading...</h2>;
   }
   return(
-    <div style={{ background: '#FFDAD1', height: '98vh'}}>
+    <div  className="testingbg" style={{ height: '98vh'}}>
       <h2 className="title">Dashboard</h2>
       <h2 style={{ textAlign: 'center', color: '#211534' }}>Your Characters <SmileOutlined /></h2>
       <CreateCharacter className="handlee"/>

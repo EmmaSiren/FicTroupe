@@ -11,10 +11,10 @@ export default function Home() {
   // console.log(characterData)
 
   if (loading) {
-    return <h2 style={{background: '#FFDAD1', height: '98vh'}} id="loading">Loading...</h2>;
+    return <h2 className="testingbg" style={{ height: '98vh'}} id="loading">Loading...</h2>;
   }
   return (
-    <div style={{ background: '#FFDAD1', height: '98vh'}}>
+    <div className="testingbg" style={{ height: '98vh'}}>
       <h2 className="title">Home</h2>
       <h2 style={{ textAlign: 'center' }}>New Characters <TeamOutlined /></h2>
       <div style={{ padding: '10px' }}>
