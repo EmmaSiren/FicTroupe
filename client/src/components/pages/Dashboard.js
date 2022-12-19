@@ -1,7 +1,9 @@
 import React from 'react';
 import CreateCharacter from './CreateCharacter';
 import { SmileOutlined, UserOutlined } from '@ant-design/icons';
+// import {QUERY_USER} from '../../utils/queries'
 import {QUERY_CHARACTERS} from '../../utils/queries'
+
 import { useQuery } from '@apollo/client';
 
 
@@ -17,11 +19,13 @@ import { useQuery } from '@apollo/client';
 //             <img className="image" alt="" src={character.img} />
             
 
-export default function Dashboard({character}) {
+export default function Dashboard() {
 
   const { loading, data } = useQuery(QUERY_CHARACTERS)
   const characterData = data?.characters || [];
-  console.log(characterData)
+  // const filterData = 
+  console.log("HERE"+characterData)
+  console.log(data)
   
   if (loading) {
     return <h2  className="testingbg" style={{ height: '98vh'}} id="loading">Loading...</h2>;
@@ -35,6 +39,8 @@ export default function Dashboard({character}) {
         {characterData.map(character => (
           <div key={character._id}>
             <h3><UserOutlined /> {character.name}</h3>
+            {/* <h3><UserOutlined /> {character.author}</h3> */}
+
             {/* <img style={{width: '100px'}} alt="" src={character.img} /> */}
 
           </div>

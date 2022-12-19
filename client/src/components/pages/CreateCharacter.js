@@ -4,6 +4,7 @@ import { LoadingOutlined, PlusOutlined  } from '@ant-design/icons';
 import { useMutation} from '@apollo/client';
 import { ADD_CHARACTER } from '../../utils/mutations';
 
+
 // import { imgUpload } from '../../utils/helper';
 
 
@@ -155,7 +156,6 @@ const [addCharacter] = useMutation(ADD_CHARACTER);
 //   description : character.description,
 //   universe : character.universe,
 //   status: character.status
-
 // }));
 const response = await addCharacter({
   variables: {
@@ -164,9 +164,8 @@ const response = await addCharacter({
   "universe" : charUniverse,
   "status" : charStatus
   },
-  
 });
-
+console.log(response);
 
 
     // const data = new FormData();
