@@ -1,5 +1,5 @@
 {
-    "name": "server",
+    "name": "fictroupe",
     "version": "1.0.0",
     "description": "",
     "main": "server.js",
@@ -16,7 +16,10 @@
       "graphql": "^16.3.0",
       "jsonwebtoken": "^8.5.1",
       "mongoose": "^6.1.8",
-      "bcrypt": "^4.0.1"
+      "bcrypt": "^4.0.1",
+      "cors":"2.8.5",
+      "multer": "1.4.5-lts.1",
+      "body-parser": "1.20.1"
     },
     "devDependencies": {
       "nodemon": "^2.0.6"

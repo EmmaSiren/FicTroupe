@@ -1,29 +1,37 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
+export const QUERY_USERS = gql`
+  query getUsers {
+    users {
       _id
       username
       email
-      myCharacters {
-        _id
-        name
-        background
-        universe
-        status
-      }
     }
   }
 `;
+
+// query user($username: String!) {
+//   user(username: $username) {
+//     _id
+//     username
+//     email
+//     myCharacters {
+//       _id
+//       name
+//       background
+//       universe
+//       status
+//     }
+//   }
+// }
 
 export const QUERY_CHARACTERS = gql`
   query getAllCharacters {
     characters {
         _id
         name
-        background
         universe
+        description
         status
     }
   }
@@ -42,7 +50,7 @@ query getSingleCharacter($characterId: ID!){
   }
 `;
 
-// Added Me query when the me/login/auth completed in the server
+// Need to fix the query me
 // export const QUERY_ME = gql`
 //   query me {
 //     me {
@@ -50,11 +58,11 @@ query getSingleCharacter($characterId: ID!){
 //       username
 //       email
 //       myCharacters {
-            // _id
-            // name
-            // background
-            // universe
-            // status
+//             _id
+//             name
+//             background
+//             universe
+//             status
 //     }
 //   }
 // `;

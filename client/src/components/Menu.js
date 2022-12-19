@@ -1,80 +1,64 @@
-import React, { useState } from 'react';
-import Home from './pages/Home';
-import Dashboard from './pages/Dashboard';
-import CreateCharacter from './pages/CreateCharacter';
-import characters from '../assets/testingdata.js/CharacterList';
-import Login from './pages/Login';
-import '../assets/css/menu.css'
-import { AppstoreOutlined } from '@ant-design/icons';
+import React from 'react';
+import Auth from "../utils/auth";
+import { Link } from 'react-router-dom';
+
+import { 
+  MenuOutlined, 
+  HomeOutlined, 
+  IdcardOutlined, 
+  LoginOutlined 
+  } from '@ant-design/icons';
 import { Menu } from 'antd';
 
-
-
 export default function HamburgerMenu() {
-  const [currentPage, setCurrentPage] = useState('Home');
-
-  const renderPage = () => {
-    if(currentPage === 'Home') {
-      return <Home />;
-    }
-    if(currentPage === 'Dashboard') {
-      return <Dashboard characters={characters}/>;
-    }
-    if(currentPage === 'CreateCharacter') {
-      return <CreateCharacter />;
-    }
-    return <Login />;
-  };
-
   const items = [
     {
       label: 'Menu',
       key: 'Menu',
-      icon: <AppstoreOutlined />,
+      icon: <MenuOutlined />,
       children: [
         {
-          label: ( 
-            <a href="#home" onClick={() => setCurrentPage('Home')}>
-              Home
-            </a>
+          label: (
+            <Menu.Item key="1">
+              <Link to="/"><HomeOutlined /> Home</Link>
+            </Menu.Item>
           ),
         },
         {
-          label: ( 
-            <a href="#dashboard" onClick={() => setCurrentPage('Dashboard')}>
-              Dashboard
-            </a>
+          label: (
+            <Menu.Item key="2">
+              <Link to="/dashboard"><IdcardOutlined /> Dashboard</Link>
+            </Menu.Item>
+
           ),
         },
         {
-          label: ( 
-            <a href="#createCharacter" onClick={() => setCurrentPage('CreateCharacter')}>
-              Create Character
-            </a>
-          ),
-        },
-        {
-          label: ( 
-            <a href="#login" onClick={() => setCurrentPage('Login')}>
-              Login
-            </a>
+          label: (
+            <Menu.Item key="3">
+              <Link to="/" onClick={() => Auth.logout()}><LoginOutlined /> Logout</Link>
+            </Menu.Item>
           ),
         },
       ],
     },
   ];
 
-    
-  return (
-    <div>
-      <header>
-        <h1 className="display-5 fw-bold">FicTroupe</h1>
-      </header>
-      <Menu mode="horizontal" items={items} />
-      <section className="container">
-        {renderPage()}
-      </section>
-      <footer className="text-center"></footer>
-    </div>
-  );
+
+    if(Auth.loggedIn()) {
+      return (
+        <Menu 
+          className="menu"
+          mode="horizontal"
+          items={items}
+        />
+      );
+    } else { 
+      return (
+        <>
+          <Link className="loggedOut" style={{paddingRight: '20px'}} to="/login">Login</Link>
+          <Link className="loggedOut" style={{paddingLeft: '20px'}} to="/signup">Sign Up</Link>
+        </>
+    );
+    }
+
 }

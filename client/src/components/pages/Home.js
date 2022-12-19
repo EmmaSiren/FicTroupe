@@ -1,9 +1,11 @@
 import React from 'react';
+
 import { QUERY_CHARACTERS } from '../../utils/queries'
 import { useQuery } from '@apollo/client';
 
-import { TeamOutlined } from '@ant-design/icons';
+import { TeamOutlined, UserOutlined } from '@ant-design/icons';
 import { Card, Descriptions } from 'antd';
+
 export default function Home() {
 
   const { loading, data } = useQuery(QUERY_CHARACTERS)
@@ -11,6 +13,7 @@ export default function Home() {
   // console.log(characterData)
 
   if (loading) {
+
     return <h2 style={{ background: '#FFDAD1', height: '98vh' }} id="loading">Loading...</h2>;
   }
 
