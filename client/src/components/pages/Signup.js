@@ -21,7 +21,7 @@ export default function Signup(props) {
         password: userFormData.password,
       },
     });
-    const token = response.data.addUser.token;
+    const token = response.data.createUser.token;
     Auth.login(token);
   };
 
