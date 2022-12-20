@@ -4,9 +4,18 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    user: async (parent, { username }) => {
-      return await User.findOne({ username }).populate('myCharacters');
-    },
+    // user: async (parent, { username }) => {
+    //   return await User.findOne({ username }).populate('myCharacters');
+    // },
+    user: async (parent,args, context) => {
+        
+      // return await User.findOne({ username: context.user._id })
+     
+      if (context.user) {
+        const me = await User.findById({ _id: context.user._id }).populate('myCharacters');
+        console.log(me);
+        return me;
+      }},
     users: async () => {
       return await User.find({});
     },
@@ -51,11 +60,12 @@ const resolvers = {
     // Manage Character information
     // What if the author put some other info when creating a character?
     createCharacter: async (parent, { name, description, universe, status }, context) => {
-      // if (context.user) {
+      if (context.user) {
         
         const character = await Character.create(
           { 
-            name,
+            name: name,
+            author: context.user.username,
             description: description,
             universe: universe,
             status: status,
@@ -65,9 +75,9 @@ const resolvers = {
           { $addToSet: { myCharacters: character._id} }
         )
         return character;
-      // } else {
-      //   console.log("Please log in to create a new character!");
-      // }
+      } else {
+        console.log("Please log in to create a new character!");
+      }
     },
 
     // 

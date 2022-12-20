@@ -25,7 +25,7 @@ const typeDefs = gql`
 
   type Query {
     users: [User]
-    user(username: String!): User
+    user(username: String): User
     characters: [Character]
     character(characterId:ID!): Character
     me: User
@@ -34,10 +34,11 @@ const typeDefs = gql`
   type Mutation {
     createUser(username: String!, email: String!, password: String!): Auth
     login(username: String!, password: String!): Auth
-    createCharacter(name: String!, Inputdescription: String!, Inputuniverse: String!, Inputstatus: String!): Character
+    createCharacter(name: String!, author: String, description: String!, universe: String!, status: String): Character
     updateCharacter(characterId: ID!, Inputdescription: String!): Character
     deleteCharacter(characterId: ID!): Character
   }
 `;
 
 module.exports = typeDefs;
+// user(username: String!): User

@@ -3,6 +3,7 @@ import { Button, Form, Input, Modal, Radio, Upload, Row, message, Card  } from '
 import { LoadingOutlined, PlusOutlined  } from '@ant-design/icons';
 import { useMutation} from '@apollo/client';
 import { ADD_CHARACTER } from '../../utils/mutations';
+import  Dashboard  from './Dashboard';
 
 // import { imgUpload } from '../../utils/helper';
 
@@ -155,7 +156,6 @@ const [addCharacter] = useMutation(ADD_CHARACTER);
 //   description : character.description,
 //   universe : character.universe,
 //   status: character.status
-
 // }));
 const response = await addCharacter({
   variables: {
@@ -164,9 +164,8 @@ const response = await addCharacter({
   "universe" : charUniverse,
   "status" : charStatus
   },
-  
 });
-
+console.log(response);
 
 
     // const data = new FormData();
@@ -189,7 +188,7 @@ const response = await addCharacter({
 //           console.log("DID NOT");
 //         }
    
-
+// Dashboard()
 
   }
 

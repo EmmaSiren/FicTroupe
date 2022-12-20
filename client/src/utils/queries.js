@@ -11,7 +11,7 @@ export const QUERY_USERS = gql`
 `;
 
 export const QUERY_USER = gql`
-  query user($username: String!) {
+  query user($username: String) {
     user(username: $username) {
       _id
       username
@@ -33,6 +33,7 @@ export const QUERY_CHARACTERS = gql`
     characters {
         _id
         name
+        author
         universe
         description
         status
