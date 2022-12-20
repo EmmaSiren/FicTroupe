@@ -51,9 +51,10 @@ Creators of all kinds often rely on folders of character sheets or Google Docs t
 - Look professional and be mobile-friendly.
 
 ## Heroku Deployment: 
-https://fictroupe.herokuapp.com/
+https://quiet-meadow-22464.herokuapp.com/
 
 ## Application Image:
+![Screenshot](/client/src/assets/images/appScreenshot.jpg)
 
 ## Plans For Future Development
 - The ability for users to “adopt” other characters.

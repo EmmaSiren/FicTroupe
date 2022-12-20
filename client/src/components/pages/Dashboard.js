@@ -34,8 +34,8 @@ export default function Dashboard() {
           <Card title={character.name} bordered={false} style={{ textAlign: 'center', background:'#FFDAD1' }}>
             <div key={character._id} style={{textAlign: "left"}}>
               <h3>{character.description}</h3>
-              <h3>{character.universe}</h3>
-              <h3>{character.status}</h3>
+              <h3>Universe: {character.universe}</h3>
+              <h3>Status: {character.status}</h3>
           {/* <h3>{character.author}</h3> */}
           {/* <img style={{width: '100px'}} alt="" src={character.img} /> */}
             </div>
