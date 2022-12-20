@@ -20,6 +20,7 @@ const resolvers = {
       return await User.find({});
     },
     characters: async () => {
+      console.log ("WORKING")
       return await Character.find();
     },
     character: async (parent, { characterId }) => {
