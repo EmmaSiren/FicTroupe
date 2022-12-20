@@ -56,11 +56,8 @@ var cstat = []
         <h2 className="title">Home</h2>
         <h2 style={{ textAlign: 'center' }}>New Characters <TeamOutlined />
         </h2>
-      </div>
-     
-      <div className="handlee"style={{ padding: '10px' }}>
-      {characterData.map(character => (
-        <Card size="small" title={character.name}>
+        {characterData.map(character => (
+        <Card size="small" title={character.name} style={{ textAlign: 'center', background:'#FFDAD1' }}>
   <div key={character._id}>
     <h3><UserOutlined /> Description: {character.description}</h3>
     <h3><UserOutlined /> Universe: {character.universe}</h3>
@@ -68,15 +65,21 @@ var cstat = []
     </div>
 </Card>
 
+
+      
+     
+ 
+
     
 
    
 
-  
-))}
+))
 
-      </div>
+}
+</div>
     </div>
+    
   );
 }  
               
