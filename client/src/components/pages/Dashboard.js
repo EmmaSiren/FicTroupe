@@ -3,6 +3,8 @@ import CreateCharacter from './CreateCharacter';
 import { SmileOutlined, UserOutlined } from '@ant-design/icons';
 import {QUERY_USER} from '../../utils/queries'
 // import {QUERY_CHARACTERS} from '../../utils/queries'
+import { Card, Descriptions } from 'antd';
+
 
 import { useQuery } from '@apollo/client';
 
@@ -49,9 +51,10 @@ export default function Dashboard() {
       <h2 className="title">Dashboard</h2>
       <h2 style={{ textAlign: 'center', color: '#211534' }}>Your Characters <SmileOutlined /></h2>
       <CreateCharacter className="handlee"/>
-      <div className="handlee" style={{padding: '10px'}}>
+      
         
       {displayCharacters.map(character => (
+        <Card size="small" title={character.name} style={{ textAlign: 'center', background:'#FFDAD1' }}>
   <div key={character._id}>
     <h3><UserOutlined /> {character.name}</h3>
     <h3><UserOutlined /> {character.description}</h3>
@@ -66,9 +69,9 @@ export default function Dashboard() {
     {/* <img style={{width: '100px'}} alt="" src={character.img} /> */}
 
   </div>
+  </Card>
 ))}
 
-      </div>
     </div>
   );
 }
