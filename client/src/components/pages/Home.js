@@ -56,10 +56,7 @@ var cstat = []
         <h2 className="title">Home</h2>
         <h2 style={{ textAlign: 'center' }}>New Characters <TeamOutlined />
         </h2>
-      </div>
-     
-      <div className="handlee"style={{ padding: '10px' }}>
-      {characterData.map(character => (
+        {characterData.map(character => (
         <Card size="small" title={character.name}>
   <div key={character._id}>
     <h3><UserOutlined /> Description: {character.description}</h3>
@@ -68,15 +65,21 @@ var cstat = []
     </div>
 </Card>
 
+
+      
+     
+ 
+
     
 
    
 
-  
-))}
+))
 
-      </div>
+}
+</div>
     </div>
+    
   );
 }  
               
