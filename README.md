@@ -22,9 +22,12 @@ Team Members:
 - Anthony Martinez
 - Jenny Wang
 - Emma Velazquez
+
 ## Introduction: 
+FicTroupe is a community for writers, artists, and tabletop gamers to store and share their original characters. 
 
 ## Project Description
+Creators of all kinds often rely on folders of character sheets or Google Docs to store information on their original characters. We want to provide a clean and convenient experience for creators to store their characters’ info, stats, and reference images. 
 
 ## User Story
 
@@ -48,10 +51,18 @@ Team Members:
 - Look professional and be mobile-friendly.
 
 ## Heroku Deployment: 
+https://quiet-meadow-22464.herokuapp.com/
 
 ## Application Image:
+![Screenshot](/client/src/assets/images/appScreenshot.jpg)
 
 ## Plans For Future Development
+- The ability for users to “adopt” other characters.
+- A commission system for users to request new custom characters
+- Scalable image hosting
+- Comments and other social systems 
+- Tagging of characters based on user generated tags
+- More robust homepage with filter, follow a tag or precise user targeted content based on their behavior
 
 ### Presentation Slide Deck
-[Presentation]()
+[Presentation](/client/src/assets/FicTroupe-Slides.pdf)
